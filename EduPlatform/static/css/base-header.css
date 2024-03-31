@@ -5,10 +5,7 @@
 
 body {
     min-height: 100vh;
-    background-image: url(../img/background.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    background-color: rgba(45, 80, 144, 0.826);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -70,7 +67,7 @@ nav li:first-child {
 .menu-button {
     display: none;
 }
-@media(max-width:800px) {
+@media(max-width: 800px) {
     .hideOnMobile {
         display: none;
     }
@@ -80,6 +77,9 @@ nav li:first-child {
 }
 @media(max-width: 400px) {
     .sidebar {
+        width: 100%;
+    }
+    nav {
         width: 100%;
     }
 }
