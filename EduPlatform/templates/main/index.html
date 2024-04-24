@@ -3,12 +3,12 @@
 
 {% block content %}
 <div class="panels">
-    <div class="exercise-panel">
+    <a href="{% url "exercises:exercises" %}" class="exercise-panel">
         <img class="exercise-img" src="{% static "img/exercise-panel-img.jpg" %}">
         <div class="hover-link">
           <div class="text">Перейти к упражнениям</div>
         </div>
-    </div>
+      </a>
       <div class="profile-panel">
         <a class="profile-link" href="#">
           <svg class="panel-icon" xmlns="http://www.w3.org/2000/svg" 

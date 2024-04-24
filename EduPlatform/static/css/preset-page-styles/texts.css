@@ -1,0 +1,39 @@
+.set-label {
+    display: inline;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    margin: 20px;
+    width: 60px;
+    user-select: none;
+}
+
+.settings {
+    margin-top: 20px;
+}
+
+.select-sets {
+    padding: 6px;
+    border-radius: 10px;
+    border-color: white;
+    width: 160px;
+}
+
+select > option {
+    padding: 6px;
+}
+
+.submit-button {
+    background-color: white;
+    padding: 6px;
+    border-radius: 10px;
+    border: none;
+    transition: background-color 0.2s;
+    margin-left: 20px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.submit-button:hover {
+    background-color: rgb(203, 203, 203);
+}

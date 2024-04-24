@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% load exercise_tags %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/preset-page-styles/texts.css' %}" />
+{% endblock style %}
+
+{% block content %}
+
+<form class="settings" action="{% url "exercises:text" %}">
+    <p class="set-label">Текст:</p>
+    <select class="select-sets" name="texts" id="texts">
+        {% get_texts as texts %}
+        {% for text in texts %}
+        <option class="text-option" value="{{ text.name }}">{{ text.name }}</option>
+        {% endfor %}
+    </select>
+    <br><br>
+    <p class="set-label">Режим:</p>
+    <select class="select-sets" name="texts" id="texts">
+        {% get_modes as modes %}
+        {% for mode in modes %}
+        <option class="text-option" value="{{ mode.name }}">{{ mode.name }}</option>
+        {% endfor %}
+    </select>
+    <br></br>
+    <input class="submit-button" type="submit" value="Начать">
+</form>
+
+{% endblock content %}

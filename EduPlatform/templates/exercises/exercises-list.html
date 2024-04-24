@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="exercise-list">
+{% for exercise in exercises %}
+    <a href="{% url "exercises:exercise-window" exercise.slug %}" class="item">
+        <div class="image">
+            <img class="exe-image" src="{{ exercise.image.url }}">
+        </div>
+        <div class="name">
+            <p class="exe-name">{{ exercise.name }}</p>
+        </div>
+    </a>
+{% endfor %}
+</div>
+{% endblock content %}

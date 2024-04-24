@@ -1,0 +1,28 @@
+.exercise-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.item {
+    background-color: white;
+    border-radius: 30px;
+    margin: 10px;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    text-decoration: none;
+    color: black;
+}
+.exe-name {
+    font-size: 30px;
+    font-weight: 600;
+    min-height: 50px;
+    user-select: none;
+    text-align: center;
+    padding-right: 10px;
+    align-items: center;
+}
+.exe-image {
+    max-width: 100px;
+    border-radius: 30px;
+}
