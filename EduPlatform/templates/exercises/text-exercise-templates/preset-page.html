@@ -8,9 +8,10 @@
 
 {% block content %}
 
-<form class="settings" action="{% url "exercises:text" %}">
+<form method="POST" class="settings" action="{% url "exercises:exercise-window" "texts" %}">
+    {% csrf_token %}
     <p class="set-label">Текст:</p>
-    <select class="select-sets" name="texts" id="texts">
+    <select class="select-sets" name="text" id="texts">
         {% get_texts as texts %}
         {% for text in texts %}
         <option class="text-option" value="{{ text.name }}">{{ text.name }}</option>
@@ -18,14 +19,14 @@
     </select>
     <br><br>
     <p class="set-label">Режим:</p>
-    <select class="select-sets" name="texts" id="texts">
+    <select class="select-sets" name="mode" id="mode">
         {% get_modes as modes %}
         {% for mode in modes %}
         <option class="text-option" value="{{ mode.name }}">{{ mode.name }}</option>
         {% endfor %}
     </select>
     <br></br>
-    <input class="submit-button" type="submit" value="Начать">
+    <button class="submit-button" type="submit">Начать</button>
 </form>
 
 {% endblock content %}

@@ -1,7 +1,18 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/executing-page-styles/texts.css' %}" />
+{% endblock style %}
+
 {% block content %}
 
+<div class="text-wrapper">
+    {% autoescape off %}
+    <p class="text">{{ text }}</p>
+    {% endautoescape %}
+</div>
+
+<a href="{% url "exercises:exercise-window" "texts" %}" class="end-button">Завершить</a>
 
 {% endblock content %}
