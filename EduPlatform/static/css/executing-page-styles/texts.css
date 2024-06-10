@@ -1,11 +1,13 @@
 .text-wrapper {
     background-color: white;
     margin: 20px;
+    margin-left: 40px;
+    margin-right: 300px;
     padding: 30px;
     border-radius: 30px;
 }
 
-.text {
+.text p {
     color: black;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 26px;
@@ -15,13 +17,14 @@
     color: black;
     background-color: white;
     border-radius: 30px;
-    padding: 8px;
+    padding: 10px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
     font-weight: 600;
     border: none;
     transition: background-color 0.3s;
     margin: 20px;
+    margin-left: 40px;
     text-decoration: none;
 }
 

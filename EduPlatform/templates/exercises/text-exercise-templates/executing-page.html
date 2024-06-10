@@ -9,7 +9,7 @@
 
 <div class="text-wrapper">
     {% autoescape off %}
-    <p class="text">{{ text }}</p>
+    <div class="text">{{ text|linebreaks }}</div>
     {% endautoescape %}
 </div>
 

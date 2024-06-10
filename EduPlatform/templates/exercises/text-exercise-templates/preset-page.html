@@ -10,23 +10,72 @@
 
 <form method="POST" class="settings" action="{% url "exercises:exercise-window" "texts" %}">
     {% csrf_token %}
-    <p class="set-label">Текст:</p>
-    <select class="select-sets" name="text" id="texts">
-        {% get_texts as texts %}
-        {% for text in texts %}
-        <option class="text-option" value="{{ text.name }}">{{ text.name }}</option>
-        {% endfor %}
-    </select>
-    <br><br>
-    <p class="set-label">Режим:</p>
-    <select class="select-sets" name="mode" id="mode">
-        {% get_modes as modes %}
-        {% for mode in modes %}
-        <option class="text-option" value="{{ mode.name }}">{{ mode.name }}</option>
-        {% endfor %}
-    </select>
-    <br></br>
-    <button class="submit-button" type="submit">Начать</button>
+    <div class="text-settings">
+        <div class="mode-select-container">
+            <p class="set-label">РЕЖИМ</p>
+            {% get_modes as modes %}
+            {% for mode in modes %}
+            <div class="select-option">
+                <div>
+                    <input type="checkbox" class="option-input" name="mode-select" value="{{ mode.name }}">
+                </div>
+                <p class="option-label">{{ mode.name }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    
+        <div class="text-select-cotainer">
+            <p class="set-label">ТЕКСТ</p>
+            {% get_texts as texts %}
+                {% for text in texts %}
+            <div class="select-option">
+                <div>
+                    <input type="checkbox" class="option-input" name="text-select" value="{{ text.name }}">
+                </div>
+                <p class="option-label">{{ text.name }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- <button class="submit-button" type="submit">Начать</button> -->
+    
 </form>
+<button class="submit-button" onclick="getData()">Начать</button>
+
+<script>
+    function getData() {
+        let texts = document.getElementsByName("text-select");
+        let modes = document.getElementsByName("mode-select");
+
+        let text_name = '';
+        let mode_name = '';
+        let csrf = document.querySelector('meta[name="csrf-token"]').content;
+
+        for (let i = 0; i < texts.length; i++) {
+            if (texts[i].checked) {
+                text_name = texts[i].value;
+                break;
+            }
+        }
+        for (let i = 0; i < modes.length; i++) {
+            if (modes[i].checked) {
+                mode_name = modes[i].value;
+                break;
+            }
+        }
+        fetch("", {
+            method: "POST",
+            body: JSON.stringify({
+                csrfmiddlewaretoken: csrf,
+                text: text_name,
+                mode: mode_name
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+    }
+</script>
 
 {% endblock content %}
