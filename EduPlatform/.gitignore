@@ -10,3 +10,7 @@ __pycache__/
 #django stuff
 db.sqlite3
 media/
+
+#etc
+../activate-venv.txt
+exercises_images/
