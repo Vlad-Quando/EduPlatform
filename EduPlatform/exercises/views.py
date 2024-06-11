@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+
 from exercises.models import Exercises
-from exercises.forms import SetTextExercise
-from exercises.exercises_logic.exercise_data_collector import collect_data
+from exercises.forms import form_exercise_match
+from exercises.exercises_logic.exercise_data_collector import exercise_collector_match
 
 
 templates_folder = ""
@@ -15,6 +17,7 @@ def exercises_list(request):
     return render(request, "exercises/exercises-list.html", context)
 
 
+@csrf_exempt
 def exercise_window(request, exercise_slug):
     global templates_folder
     page_name = ""
@@ -34,14 +37,12 @@ def exercise_window(request, exercise_slug):
         }
 
     elif request.method == "POST":
-        try:
-            print(request)
-            form = SetTextExercise(data=request.POST)
-                
-            if form.is_valid():
-                context = collect_data(request.POST)
-            page_name = "executing-page.html"
-        except UnboundLocalError:
-            print(request.POST)
+        form = form_exercise_match[exercise_slug](data=request.POST)
+        
+        if form.is_valid():
+            context = exercise_collector_match[exercise_slug](request.POST)
+        else:
+            context = {}
+        page_name = "executing-page.html"
 
-    return render(request, f"exercises/{templates_folder}/{page_name}")
+    return render(request, f"exercises/{templates_folder}/{page_name}", context)

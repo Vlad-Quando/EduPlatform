@@ -17,7 +17,7 @@
             {% for mode in modes %}
             <div class="select-option">
                 <div>
-                    <input type="checkbox" class="option-input" name="mode-select" value="{{ mode.name }}">
+                    <input type="checkbox" class="option-input" name="mode" value="{{ mode.name }}">
                 </div>
                 <p class="option-label">{{ mode.name }}</p>
             </div>
@@ -30,7 +30,7 @@
                 {% for text in texts %}
             <div class="select-option">
                 <div>
-                    <input type="checkbox" class="option-input" name="text-select" value="{{ text.name }}">
+                    <input type="checkbox" class="option-input" name="text" value="{{ text.name }}">
                 </div>
                 <p class="option-label">{{ text.name }}</p>
             </div>
@@ -38,10 +38,10 @@
         </div>
     </div>
 
-    <!-- <button class="submit-button" type="submit">Начать</button> -->
+    <button class="submit-button" type="submit">Начать</button>
     
 </form>
-<button class="submit-button" onclick="getData()">Начать</button>
+{% comment %} <button class="submit-button" onclick="getData()">Начать</button> {% endcomment %}
 
 <script>
     function getData() {
@@ -50,7 +50,7 @@
 
         let text_name = '';
         let mode_name = '';
-        let csrf = document.querySelector('meta[name="csrf-token"]').content;
+        // let csrf = document.querySelector("[name=csrfmiddlewaretoken]").value;
 
         for (let i = 0; i < texts.length; i++) {
             if (texts[i].checked) {
@@ -64,17 +64,31 @@
                 break;
             }
         }
+        // const xhr = new XMLHttpRequest();
+        // xhr.open("POST", "");
+        // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        // xhr.send(new URLSearchParams({
+        //     text: text_name,
+        //     mode: mode_name
+        // }))
         fetch("", {
             method: "POST",
-            body: JSON.stringify({
-                csrfmiddlewaretoken: csrf,
-                text: text_name,
-                mode: mode_name
-            }),
+            body: new URLSearchParams({
+               text: text_name,
+               mode: mode_name
+           }),
             headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            }
-        })
+                "Content-type": "application/x-www-form-urlencoded"
+            },
+            
+        }).then(function(response) {
+            return response.text();
+        }).then(function(html) {
+            let parser = new DOMParser();
+            let doc = parser.parseFromString(html, "text/html");
+            
+            document.write(doc.html)
+        });
     }
 </script>
 

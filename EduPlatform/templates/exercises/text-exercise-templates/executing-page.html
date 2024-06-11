@@ -7,12 +7,15 @@
 
 {% block content %}
 
-<div class="text-wrapper">
-    {% autoescape off %}
-    <div class="text">{{ text|linebreaks }}</div>
-    {% endautoescape %}
+<div class="grid-box">
+    <div class="text-wrapper">
+        {% autoescape off %}
+        <div class="text">{{ text|linebreaks }}</div>
+        {% endautoescape %}
+    </div>
+    <div class="end-button-wrapper">
+        <a href="{% url "exercises:exercise-window" "texts" %}" class="end-button">Завершить</a>
+    </div>
 </div>
-
-<a href="{% url "exercises:exercise-window" "texts" %}" class="end-button">Завершить</a>
 
 {% endblock content %}

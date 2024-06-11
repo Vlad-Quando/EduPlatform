@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% load exercise_tags %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/preset-page-styles/texts.css' %}" />
+{% endblock style %}
+
+{% block content %}
+
+<form method="POST" class="settings" action="{% url "exercises:exercise-window" "skorochtenie" %}">
+    {% csrf_token %}
+    <div class="text-settings">
+        <div class="text-select-cotainer">
+            <p class="set-label">ТЕКСТ</p>
+            {% get_texts as texts %}
+                {% for text in texts %}
+            <div class="select-option">
+                <div>
+                    <input type="checkbox" class="option-input" name="text" value="{{ text.name }}">
+                </div>
+                <p class="option-label">{{ text.name }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <button class="submit-button" type="submit">Начать</button>
+</form>
+
+{% endblock content %}
