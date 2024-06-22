@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from exercises.models import Exercises, Texts, Modes, MemoItems
+from exercises.models import *
 
 
 # admin.site.register(Exercises)
@@ -23,4 +23,9 @@ class ModesAdmin(admin.ModelAdmin):
 
 @admin.register(MemoItems)
 class MemoItemsAdmin(admin.ModelAdmin):
+    list_display = ['name',]
+
+
+@admin.register(SystemImages)
+class SystemImagesAdmin(admin.ModelAdmin):
     list_display = ['name',]

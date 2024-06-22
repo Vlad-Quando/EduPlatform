@@ -29,7 +29,7 @@ class Texts(models.Model):
 
 
 class Modes(models.Model):
-    name = models.CharField(verbose_name='Режим', max_length=100)
+    name = models.CharField(verbose_name='Режим', max_length=100, unique=True)
 
     def __str__(self):
         return self.name
@@ -40,8 +40,27 @@ class Modes(models.Model):
 
 
 class MemoItems(models.Model):
-    name = models.CharField(verbose_name='Название', max_length=100)
-    image = models.ImageField(upload_to='memo_items', verbose_name="Изображение")
+
+    class Level(models.IntegerChoices):
+        First = 1, '1'
+        Second = 2, '2'
+        Third = 3, '3'
+        Fourth = 4, '4'
+
+    class Theme(models.IntegerChoices):
+        RoadTransport = 1, 'Транспорт'
+        Animals = 2, 'Животные'
+        Travel = 3, 'Путешествие'
+        Nature = 4, 'Природа'
+        Music = 5, 'Музыка'
+        Furniture = 6, 'Мебель'
+        Landscape = 7, 'Пейзажи'
+        Clothes = 8, 'Одежда'
+
+    name = models.CharField(verbose_name='Название', max_length=100, blank=False)
+    image = models.ImageField(upload_to='memo_items', verbose_name="Изображение", blank=False)
+    level = models.IntegerField(verbose_name="Уровень", choices=Level.choices, unique=False, blank=True, default=Level.First)
+    theme = models.IntegerField(verbose_name="Тема", choices=Theme.choices, unique=False, blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -49,3 +68,15 @@ class MemoItems(models.Model):
     class Meta:
         verbose_name = "Memo-предмет"
         verbose_name_plural = "Memo-предметы"
+
+    
+class SystemImages(models.Model):
+    name = models.CharField(verbose_name='Название', max_length=100, blank=False, unique=True)
+    image = models.ImageField(upload_to='sys_img', verbose_name="Изображение", blank=False)
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = "Системное изображение"
+        verbose_name_plural = "Системные изображения"

@@ -1,0 +1,56 @@
+.exercises-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+@media(max-width: 800px) {
+    .exercises-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .exercise-label {
+        font-size: 3vw;
+    }
+}
+
+@media(max-width: 550px) {
+    .exercises-grid {
+        grid-template-columns: 1fr;
+    }
+    .exercise-label {
+        font-size: 20px;
+    }
+}
+
+.exercise {
+    background-color: white;
+    border: none;
+    border-radius: 16px;
+    margin: 20px;
+
+    transition: background-color 0.3s;
+}
+
+.exercise:hover {
+    background-color: rgb(225, 225, 225);
+}
+
+.exercise-link {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    column-gap: 1vw;
+    align-items: center;
+
+    text-decoration: none;
+    color: black;
+
+    min-height: 100%;
+}
+
+.exercise-img {
+    max-width: 80%;
+    margin: 10px;
+}
+
+.exercise-label {
+    font-size: 2vw;
+}

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static "exercises/shulte_exe-styles/settings-page.css" %}">
+<link rel="stylesheet" href="{% static "css/system-styles/input-range.css" %}">
+{% endblock style %}
+
+{% block content %}
+
+<form method="POST" class="form">
+    {% csrf_token %}
+    <div class="setting-container">
+        <div class="size-setting-container">
+            <div class="lables">
+                <p class="label">Размер таблицы:</p>
+                <p id="tableSize" class="value">7x7</p>
+            </div>
+            <input id="inputSize" class="size-input" type="range" min="3" max="7" step="1" value="7" name="size" onchange="setType(event)">
+        </div>
+
+        <div class="option-selection">
+            <div class="option-title">
+                <p>Тип таблицы</p>
+            </div>
+            <div class="option">
+                <input id="type-option" type="checkbox" class="option-input" name="type" value="Буквы" onchange="chooseType(event)">
+                <p class="option-name">Буквы</p>
+            </div>
+            <div class="option">
+                <input id="type-option" type="checkbox" class="option-input" name="type" value="Цифры" onchange="chooseType(event)">
+                <p class="option-name">Цифры</p>
+            </div>
+        </div>
+        <button class="start-button" type="submit">Старт</button>
+    </div>
+    
+</form>
+
+<script>
+    function setType(event) {
+        let val = event.target.value + 'x' + event.target.value
+        document.getElementById("tableSize").innerHTML = val;
+    }
+
+    let typeChosen = false;
+
+    options = document.querySelectorAll("#type-option");
+    for (let i = 0; i < options.length; i++) {
+        options[i].checked = false;
+    }
+    
+    function chooseType(event) {
+        let changedIndex = 0;
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].checked) {
+                changedIndex = i;
+                typeChosen = true;
+            }
+        }
+        if (typeChosen) {
+            for (let i = 0; i < options.length; i++) {
+                if (changedIndex != i) {
+                    options[i].disabled = true;
+                }
+                if (options[i].value === "Буквы" && options[i].checked === true) {
+                    let input = document.getElementById("inputSize");
+                    if (parseInt(input.value) > 5) {
+                        document.getElementById("tableSize").innerHTML = '5x5';
+                        input.value = '5';
+                    }
+                    input.max = '5';
+                }
+            }
+            changedIndex = undefined;
+            typeChosen = false;
+            return;
+        }
+        else {
+            for (let i = 0; i < options.length; i++) {
+                options[i].disabled = false;
+            }
+            let input = document.getElementById("inputSize");
+            input.max = '7';
+        }
+    }
+</script>
+
+{% endblock content %}

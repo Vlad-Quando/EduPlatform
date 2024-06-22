@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+{% load exercise_tags %}
+
+{% block style %}
+
+<link rel="stylesheet" href="{% static "exercises/fr_exe-styles/settings-page.css" %}">
+<link rel="stylesheet" href="{% static "css/system-styles/scroller.css" %}">
+<link rel="stylesheet" href="{% static "css/system-styles/input-range.css" %}">
+
+{% endblock style %}
+
+{% block content %}
+
+<form method="POST" class="form">
+    {% csrf_token %}
+    <div class="settings-container">
+        <div class="option-selection">
+            <div class="option-title">
+                <p>Тексты</p>
+            </div>
+            {% get_texts as texts %}
+            {% for text in texts %}
+            <div class="option">
+                <input id="text-option" type="checkbox" class="option-input" name="text" value="{{ text.name }}" onchange="chooseText(event)">
+                <p class="option-name">{{ text.name }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="timer-setting-container">
+            <div class="lables">
+                <p class="label">Время чтения:</p>
+                <p class="value">1м</p>
+            </div>
+            <input class="timer-input" type="range" min="10" max="90" step="10" value="60" name="timer" onchange="setTimer(event)">
+        </div>
+    </div>
+    <button class="start-button" type="submit">Старт</button>
+</form>
+
+<script>
+    let textChosen = false;
+
+    options = document.querySelectorAll("#text-option");
+    for (let i = 0; i < options.length; i++) {
+        options[i].checked = false;
+    }
+
+    function chooseText(event) {
+        options = document.querySelectorAll("#text-option");
+        let changedIndex = 0;
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].checked) {
+                changedIndex = i;
+                textChosen = true;
+            }
+        }
+        if (textChosen) {
+            for (let i = 0; i < options.length; i++) {
+                if (changedIndex != i) {
+                    options[i].disabled = true;
+                }
+            }
+            changedIndex = undefined;
+            textChosen = false;
+            return;
+        }
+        else {
+            for (let i = 0; i < options.length; i++) {
+                options[i].disabled = false;
+            }
+        }
+    }
+
+    function setTimer(event) {
+        const value = document.querySelector(".value");
+        let time = event.target.value;
+        if (parseInt(time) >= 60) {
+            secs = parseInt(time) - 60;
+            if (secs === 0) {
+                time = '1м';
+            } else {
+                time = '1м ' + secs + 'с';
+            }
+        } else {
+            time += 'с';
+        }
+        value.innerHTML =  time;
+    }
+</script>
+
+{% endblock content %}

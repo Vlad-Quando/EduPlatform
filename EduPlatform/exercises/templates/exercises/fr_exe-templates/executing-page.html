@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+
+<link rel="stylesheet" href="{% static "exercises/fr_exe-styles/executing-page.css" %}">
+
+{% endblock style %}
+
+{% block content %}
+
+<input id="time-data" type="hidden" data-time="{{ data.time }}">
+
+<div class="container">
+    <div class="text-container">
+        {% autoescape off %}
+        <p id="text">{{ data.text }}</p>
+        {% endautoescape %}
+        <div id="results" class="results">
+            <p id="time-passed">Минута прошла!</p>
+            <p id="words-read">Было прочитано 190 слов!</p>
+        </div>
+    </div>
+    <div class="interface-container">
+        <p class="timer" id="timer">---</p>
+        <button id="stop-timer" class="set-timer" onclick="startTimer()">Старт</button>
+        <button id="stop-timer-but" class="set-timer" onclick="stopTimer()">Стоп</button>
+        <a id="end-button" class="end-button" href="{% url "exercises:exercise-page" "skorochtenie" %}">Завершить</a>
+    </div>
+</div>
+
+<script>
+    let text = document.getElementById("text");
+
+    let timeData = document.getElementById('time-data');
+    let timerTime = document.getElementById("timer");
+    let time = parseInt(timeData.dataset.time);
+    let passedTime = -2;
+
+    let timer;
+
+    function startTimer() {
+        text.style.filter = "none";
+        timer = setInterval(() => {
+            if (time >= 60) {
+                secs = time - 60;
+                if (secs >= 10) {
+                    timerTime.innerHTML = '01:' + secs;
+                } else {
+                    timerTime.innerHTML = '01:0' + secs;
+                }
+            } else if (time < 60 && time >= 10) {
+                timerTime.innerHTML = '00:' + time;
+            } else if (time < 10 && time >= 0) {
+                timerTime.innerHTML = '00:0' + time;
+            } else {
+                clearInterval(timer);
+                timerTime.innerHTML = 'Время вышло!';
+            }
+            time--;
+            passedTime++;
+        }, 1000)
+    }
+    
+    function stopTimer() {
+        clearInterval(timer);
+        timerTime.innerHTML = 'Таймер остановлен!';
+        let but = document.getElementById("stop-timer");
+        but.innerHTML = 'Продолжить';
+    }
+
+    // Shows results block, stops timer and make timer buttons unavilable
+    function showResults(event) {
+        if (passedTime === 60) {
+            document.getElementById("time-passed").innerHTML = "Минута прошла!";
+        } else {
+            if (passedTime < 60) {
+                document.getElementById("time-passed").innerHTML = `${passedTime} секунд прошло!`;
+            } else if (passedTime > 60) {
+                document.getElementById("time-passed").innerHTML = `Чтение заняло 1 минуту и ${passedTime - 60} секунд!`;
+            }
+        }
+        wordsRead = event.target.parentElement.id;
+        document.getElementById("words-read").innerHTML = `${wordsRead} слов было прочитано!`;
+
+        document.getElementById("text").style.display = "none";
+        document.getElementById("results").style.display = "grid";
+
+        document.getElementById("stop-timer").removeAttribute("onclick");
+        document.getElementById("stop-timer-but").removeAttribute("onclick");
+        clearInterval(timer);
+        timerTime.innerHTML = 'Таймер остановлен!';
+    }
+</script>
+
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static "exercises/memo_exe-styles/executing-page.css" %}">
+{% endblock style %}
+
+{% block content %}
+<input id="data" type="hidden" data-preparing-time="{{ data.preparing_time }}" data-placeholder-url="{% static "img/memo-images/placeholder.jpg" %}">
+<div class="cards-container">
+    {% for item in data.items %}
+    <div class="image-container" onclick="memoHandler(event)">
+        <img class="image" src="{{ item.image.url }}" data-url="{{ item.image.url }}">
+        <p class="image-label"></p>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+    let imageNumber = 1;
+    let lables = document.querySelectorAll('.image-label');
+    lables.forEach(lable => {
+        lable.innerHTML = imageNumber;
+        imageNumber++;
+    });
+
+    let data = document.getElementById('data').dataset;
+    let images = document.querySelectorAll('.image');
+    setInterval(() => {
+        images.forEach(image => {
+            image.src = data.placeholderUrl;
+            image.style.width = "55%";
+        });
+    }, 1000 * data.preparingTime);
+
+    let cardStack = [];
+    function memoHandler(event) {
+        event.srcElement.src = event.srcElement.dataset.url;
+    }
+</script>
+
+{% endblock content %}

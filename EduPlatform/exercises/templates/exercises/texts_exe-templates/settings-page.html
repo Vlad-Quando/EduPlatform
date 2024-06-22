@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load static %}
+{% load exercise_tags %}
+
+{% block style %}
+
+<link rel="stylesheet" href="{% static "exercises/texts_exe-styles/settings-page.css" %}">
+<link rel="stylesheet" href="{% static "css/system-styles/scroller.css" %}">
+
+{% endblock style %}
+
+{% block content %}
+
+<form method="POST" class="form">
+    {% csrf_token %}
+    <div class="settings-container">
+        <div class="option-selection">
+            <div class="option-title">
+                <p>Тексты</p>
+            </div>
+            {% get_texts as texts %}
+            {% for text in texts %}
+            <div class="option">
+                <input id="text-option" type="checkbox" class="option-input" name="text" value="{{ text.name }}" onchange="chooseText(event)">
+                <p class="option-name">{{ text.name }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="option-selection" id="hide-mode-scroller">
+            <div class="option-title">
+                <p>Режимы</p>
+            </div>
+            {% get_modes as modes %}
+            {% for mode in modes %}
+            <div class="option">
+                <input id="mode-option" type="checkbox" class="option-input" name="mode" value="{{ mode.name }}" onchange="chooseMode(event)">
+                <p class="option-name">{{ mode.name }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <button class="start-button" type="submit">Старт</button>
+</form>
+
+<script>
+    let textChosen = false;
+    let modeChosen = false;
+
+    options = document.querySelectorAll("#text-option");
+    for (let i = 0; i < options.length; i++) {
+        options[i].checked = false;
+    }
+    options = document.querySelectorAll("#mode-option");
+    for (let i = 0; i < options.length; i++) {
+        options[i].checked = false;
+    }
+
+    function chooseText(event) {
+        options = document.querySelectorAll("#text-option");
+        let changedIndex = 0;
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].checked) {
+                changedIndex = i;
+                textChosen = true;
+            }
+        }
+        if (textChosen) {
+            for (let i = 0; i < options.length; i++) {
+                if (changedIndex != i) {
+                    options[i].disabled = true;
+                }
+            }
+            changedIndex = undefined;
+            textChosen = false;
+            return;
+        }
+        else {
+            for (let i = 0; i < options.length; i++) {
+                options[i].disabled = false;
+            }
+        }
+        
+    }
+
+    function chooseMode(event) {
+        options = document.querySelectorAll("#mode-option");
+        let changedIndex = 0;
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].checked) {
+                changedIndex = i;
+                modeChosen = true;
+            }
+        }
+        if (modeChosen) {
+            for (let i = 0; i < options.length; i++) {
+                if (changedIndex != i) {
+                    options[i].disabled = true;
+                }
+            }
+            changedIndex = undefined;
+            modeChosen = false;
+            return;
+        }
+        else {
+            for (let i = 0; i < options.length; i++) {
+                options[i].disabled = false;
+            }
+        }
+    }
+</script>
+
+{% endblock content %}

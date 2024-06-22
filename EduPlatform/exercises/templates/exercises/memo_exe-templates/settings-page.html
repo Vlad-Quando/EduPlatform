@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static "exercises/memo_exe-styles/settings-page.css" %}">
+<link rel="stylesheet" href="{% static "css/system-styles/input-range.css" %}">
+{% endblock style %}
+
+{% block content %}
+
+<form method="POST" class="form">
+    {% csrf_token %}
+    <div class="setting-container">
+        <div class="cards-count-setting-container">
+            <div class="lables">
+                <p class="label">Количество карточек:</p>
+                <p id="cardsCount" class="value">12</p>
+            </div>
+            <input class="cards-input" type="range" min="8" max="20" step="2" value="12" name="items_count" onchange="setCardsCount(event)">
+        </div>
+        <div class="cards-count-setting-container">
+            <div class="lables">
+                <p class="label">Время подготовки:</p>
+                <p id="preparingTime" class="value">5с</p>
+            </div>
+            <input class="cards-input" type="range" min="3" max="10" step="1" value="5" name="preparing_time" onchange="setPreparingTime(event)">
+        </div>
+    </div>
+    <button class="start-button" type="submit">Старт</button>
+</form>
+
+<script>
+    function setCardsCount(event) {
+        document.getElementById("cardsCount").innerHTML = event.target.value;
+    }
+    function setPreparingTime(event) {
+        document.getElementById("preparingTime").innerHTML = event.target.value + 'с';
+    }
+</script>
+
+{% endblock content %}
