@@ -51,7 +51,7 @@ def collect_data_for_memo(context: QueryDict):
     items = items[:items_count] * 2
     shuffle(items)
 
-    data = {'items': items, 'preparing_time': preparing_time}
+    data = {'items': items, 'preparing_time': preparing_time, "quantity": items_count * 2}
 
     return data
 

@@ -71,3 +71,26 @@
 .end-button:hover {
     background-color: rgb(225, 225, 225);
 }
+
+@media(max-width: 810px) {
+    .table {
+        width: 70%;
+    }
+}
+@media(max-width: 580px) {
+    .table {
+        width: 90%;
+    }
+}
+@media(max-width: 450px) {
+    .table {
+        padding: 6px;
+    }
+    .cell {
+        margin: 6px;
+        padding: 7px;
+    }
+    .label {
+        font-size: 17px;
+    }
+}

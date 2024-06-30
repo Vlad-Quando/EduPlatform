@@ -2,41 +2,29 @@
 {% load static %}
 
 {% block style %}
-<link rel="stylesheet" href="{% static "exercises/memo_exe-styles/executing-page.css" %}">
+<link rel="stylesheet" href="{% static 'exercises/css/memo_exe-styles/executing-page.css' %}">
 {% endblock style %}
 
 {% block content %}
-<input id="data" type="hidden" data-preparing-time="{{ data.preparing_time }}" data-placeholder-url="{% static "img/memo-images/placeholder.jpg" %}">
-<div class="cards-container">
+<input id="data" type="hidden" data-cards-quantity="{{ data.quantity }}" data-preparing-time="{{ data.preparing_time }}" data-placeholder-url="{% static 'img/memo-images/placeholder.jpg' %}">
+<div id="cards-container" class="cards-container">
     {% for item in data.items %}
-    <div class="image-container" onclick="memoHandler(event)">
-        <img class="image" src="{{ item.image.url }}" data-url="{{ item.image.url }}">
+    <div class="image-container">
+        <img class="image closed" src="{{ item.image.url }}">
         <p class="image-label"></p>
     </div>
     {% endfor %}
 </div>
 
-<script>
-    let imageNumber = 1;
-    let lables = document.querySelectorAll('.image-label');
-    lables.forEach(lable => {
-        lable.innerHTML = imageNumber;
-        imageNumber++;
-    });
+<div id="results" class="results-block">
+    <p class="results-text">Поздравляем!</p>
+    <p id="passed-time" class="results-text">Вы открыли все карточки за 20 сек.</p>
+</div>
 
-    let data = document.getElementById('data').dataset;
-    let images = document.querySelectorAll('.image');
-    setInterval(() => {
-        images.forEach(image => {
-            image.src = data.placeholderUrl;
-            image.style.width = "55%";
-        });
-    }, 1000 * data.preparingTime);
+<div class="end-but-container">
+    <a class="end-button" href="{% url "exercises:exercise-page" "memo" %}">Завершить</a>
+</div>
 
-    let cardStack = [];
-    function memoHandler(event) {
-        event.srcElement.src = event.srcElement.dataset.url;
-    }
-</script>
+<script src="{% static 'exercises/js/memo/exe_page.js' %}"></script>
 
 {% endblock content %}

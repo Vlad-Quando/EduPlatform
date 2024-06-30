@@ -58,6 +58,11 @@
     align-self: center;
     min-width: 90%;
 }
+@media(max-width: 340px) {
+    .cards-input {
+        max-width: 50%;
+    }
+}
 
 .form {
     display: grid;

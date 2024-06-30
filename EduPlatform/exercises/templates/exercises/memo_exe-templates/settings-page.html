@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block style %}
-<link rel="stylesheet" href="{% static "exercises/memo_exe-styles/settings-page.css" %}">
+<link rel="stylesheet" href="{% static "exercises/css/memo_exe-styles/settings-page.css" %}">
 <link rel="stylesheet" href="{% static "css/system-styles/input-range.css" %}">
 {% endblock style %}
 
@@ -29,13 +29,6 @@
     <button class="start-button" type="submit">Старт</button>
 </form>
 
-<script>
-    function setCardsCount(event) {
-        document.getElementById("cardsCount").innerHTML = event.target.value;
-    }
-    function setPreparingTime(event) {
-        document.getElementById("preparingTime").innerHTML = event.target.value + 'с';
-    }
-</script>
+<script src="{% static "exercises/js/memo/set_page.js" %}"></script>
 
 {% endblock content %}
