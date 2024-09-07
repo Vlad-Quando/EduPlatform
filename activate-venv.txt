@@ -1,3 +1,0 @@
-B:
-cd pyproj\EduPlatformRep\EduPlatform
-B:\pyproj\EduPlatformRep\venv\Scripts\activate

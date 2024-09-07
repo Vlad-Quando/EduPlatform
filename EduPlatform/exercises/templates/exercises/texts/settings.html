@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+{% load exercise_tags %}
+
+{% block style %}
+
+<link rel="stylesheet" href="{% static 'exercises/css/texts/settings.css' %}">
+<link rel="stylesheet" href="{% static 'css/system-styles/scroller.css' %}">
+<link rel="stylesheet" href="{% static 'css/system-styles/checkbox.css' %}">
+
+{% endblock style %}
+
+{% block content %}
+
+<form method="POST" class="form">
+    {% csrf_token %}
+    <div class="form-content">
+        <div class="settings-container">
+            <div class="option-selection">
+                <div class="option-title">
+                    <p class="noselect">Тексты</p>
+                </div>
+                {% get_texts as texts %}
+                {% for text in texts %}
+                <div class="option">
+                    <input id="text-option" type="checkbox" class="option-input" name="text" value="{{ text.name }}" onchange="chooseText(event)">
+                    <p class="option-name noselect">{{ text.name }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="option-selection" id="hide-mode-scroller">
+                <div class="option-title">
+                    <p class="noselect">Режимы</p>
+                </div>
+                {% get_modes as modes %}
+                {% for mode in modes %}
+                <div class="option">
+                    <input id="mode-option" type="checkbox" class="option-input" name="mode" value="{{ mode.name }}" onchange="chooseMode(event)">
+                    <p class="option-name noselect">{{ mode.name }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <button class="start-button" type="submit">Старт</button>
+    </div>
+</form>
+
+<script src="{% static 'exercises/js/texts/settings.js' %}"></script>
+
+{% endblock content %}

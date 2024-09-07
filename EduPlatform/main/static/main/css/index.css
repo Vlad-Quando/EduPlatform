@@ -32,12 +32,16 @@
     border-radius: 16px;
     margin: 20px;
     align-items: center;
+    cursor: pointer;
 
     transition: background-color 0.3s;
 }
 
 .option:hover {
     background-color: rgb(225, 225, 225);
+}
+.option:active {
+    background-color: rgb(171, 171, 171);
 }
 
 .option-link {
@@ -47,6 +51,7 @@
     align-items: center;
     text-decoration: none;
     color: black;
+    cursor: pointer;
 }
 
 .option-image {

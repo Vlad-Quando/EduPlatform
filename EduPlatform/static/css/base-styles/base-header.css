@@ -9,6 +9,10 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.header-container {
+    position: relative;
+}
+
 nav {
     background-color: white;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
@@ -37,8 +41,30 @@ nav a {
 nav a:hover {
     background-color: #f0f0f0;
 }
+nav a:active {
+    background-color: rgb(171, 171, 171);
+}
 nav li:first-child {
     margin-right: auto;
+}
+
+nav button {
+    height: 100%;
+    padding: 0 30px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: black;
+    background-color: white;
+    border: none;
+    width: 100%;
+    align-self: center;
+}
+nav button:hover {
+    background-color: #f0f0f0;
+}
+nav button:active {
+    background-color: rgb(171, 171, 171);
 }
 
 .sidebar {
@@ -83,3 +109,11 @@ nav li:first-child {
         width: 100%;
     }
 }
+
+/* .form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+} */
+

@@ -72,9 +72,52 @@ def collect_data_for_shulte(context: QueryDict):
     return {'ordered_array': ordered_array, 'unordered_array': unordered_array, 'size': size}
 
 
+def collect_data_for_strup(context: QueryDict):
+    data = {
+        'красный': 'red',
+        'коричневый': 'brown',
+        'фиолетовый': 'violet',
+        'зелёный': 'green',
+        'оранжевый': 'orange',
+        'синий': 'blue',
+        'чёрный': 'black',
+        'жёлтый': 'yellow',
+        'белый': 'white',
+        'розовый': 'pink',
+    }
+    data_keys = list(data.keys())
+
+    words = list()
+    cur_quantity, i = int(context['quantity']), 0
+    while cur_quantity:
+        words.append(data_keys[i])
+        i += 1
+        cur_quantity -= 1
+        if i == 10: i = 0
+    shuffle(words)
+    
+    if 'isWords' in context.keys():
+        mode = 'words'
+    elif 'isTable' in context.keys():
+        mode = 'table'
+    
+    if mode == "table":
+        text = ''
+        for word in words:
+            text += f'<p class="table-word" id="{data[word]}">{word}</p>'
+        return {'mode': mode, 'words': text}
+    elif mode == "words":
+        text = ""
+        for i in range(len(words)):
+            text += f'<p class="words-word" id="{data[words[i]]}">{words[i]}</p>, '
+        text += f'<p class="words-word">Конец!</p>, '
+        return {'mode': mode, 'words': text, 'time': float(context['time'])}
+
+
 exercise_collector_match = {
     "texts": collect_data_for_texts,
     "skorochtenie": collect_data_for_fr,
     "memo": collect_data_for_memo,
-    "shulte-table": collect_data_for_shulte
+    "shulte-table": collect_data_for_shulte,
+    "strup-test": collect_data_for_strup,
 }

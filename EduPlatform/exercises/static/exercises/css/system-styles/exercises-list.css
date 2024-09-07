@@ -1,6 +1,14 @@
+/* .exercise-container {
+    width: 100%;
+    height: 100%;
+    margin: 0 0;
+    padding: 20px;
+} */
+
 .exercises-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: auto;
 }
 
 @media(max-width: 800px) {
@@ -32,6 +40,10 @@
 
 .exercise:hover {
     background-color: rgb(225, 225, 225);
+}
+
+.exercise:active {
+    background-color: rgb(171, 171, 171);
 }
 
 .exercise-link {

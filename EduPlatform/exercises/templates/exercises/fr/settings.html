@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% load exercise_tags %}
+
+{% block style %}
+
+<link rel="stylesheet" href="{% static "exercises/css/fr/settings.css" %}">
+<link rel="stylesheet" href="{% static "css/system-styles/scroller.css" %}">
+<link rel="stylesheet" href="{% static "css/system-styles/input-range.css" %}">
+
+{% endblock style %}
+
+{% block content %}
+
+<form method="POST" class="form">
+    {% csrf_token %}
+    <div class="form-content">
+        <div class="settings-container">
+            <div class="option-selection">
+                <div class="option-title">
+                    <p class="noselect">Тексты</p>
+                </div>
+                {% get_texts as texts %}
+                {% for text in texts %}
+                <div class="option">
+                    <input id="text-option" type="checkbox" class="option-input" name="text" value="{{ text.name }}" onchange="chooseText(event)">
+                    <p class="option-name noselect">{{ text.name }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="timer-setting-container">
+                <div class="lables">
+                    <p class="label noselect">Время чтения:</p>
+                    <p class="value noselect">1м</p>
+                </div>
+                <input class="timer-input" type="range" min="10" max="90" step="10" value="60" name="timer" onchange="setTimer(event)">
+            </div>
+        </div>
+        <button class="start-button" type="submit">Старт</button>
+    </div>
+</form>
+
+<script src="{% static "exercises/js/fr/set_page.js" %}"></script>
+
+{% endblock content %}

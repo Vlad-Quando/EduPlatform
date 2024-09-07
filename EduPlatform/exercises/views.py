@@ -30,7 +30,7 @@ def exercise_page(request, exercise_slug):
         if templates_folder == "system-templates":
             page_name = "in-develop.html"
         else:
-            page_name = "settings-page.html"
+            page_name = "settings.html"
 
         context = {
             'exercise_data': exercise,
@@ -46,5 +46,5 @@ def exercise_page(request, exercise_slug):
                 "slug": exercise_slug,
                 "data": data,
             }
-        page_name = "executing-page.html"
+        page_name = "exe.html"
     return render(request, f"exercises/{templates_folder}/{page_name}", context)

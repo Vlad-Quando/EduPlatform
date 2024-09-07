@@ -20,9 +20,17 @@ class ShulteForm(forms.Form):
     type = forms.CharField()
 
 
+class StrupForm(forms.Form):
+    isTable = forms.CharField(empty_value='no')
+    isWords = forms.CharField(empty_value='no')
+    quantity = forms.CharField()
+    time = forms.CharField()
+
+
 form_exercise_match = {
     "texts": TextForm,
     "skorochtenie": FrForm,
     "memo": MemoForm,
-    "shulte-table": ShulteForm
+    "shulte-table": ShulteForm,
+    "strup-test": StrupForm,
 }
