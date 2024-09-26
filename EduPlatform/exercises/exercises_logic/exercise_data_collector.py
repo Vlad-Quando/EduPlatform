@@ -43,8 +43,8 @@ def collect_data_for_fr(context: QueryDict) -> dict:
 
 
 def collect_data_for_memo(context: QueryDict):
-    items_count = int(context['items_count']) // 2
-    preparing_time = int(context['preparing_time'])
+    items_count = int(context['quantity']) // 2
+    preparing_time = int(context['time']) * 1000
 
     items = list(MemoItems.objects.all())
     shuffle(items)
@@ -57,14 +57,16 @@ def collect_data_for_memo(context: QueryDict):
 
 
 def collect_data_for_shulte(context: QueryDict):
-    size = int(context['size'])
+    print(context)
+    size = int(context['size'][0])
     table_type = context['type']
+    print(size, table_type)
 
-    if table_type == "Цифры":
+    if table_type == "nums":
         ordered_array = list(i for i in range(1, size ** 2 + 1))
         unordered_array = ordered_array.copy()
         shuffle(unordered_array)
-    elif table_type == "Буквы":
+    elif table_type == "letters":
         ordered_array = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Ю'][:size ** 2]
         unordered_array = ordered_array.copy()
         shuffle(unordered_array)

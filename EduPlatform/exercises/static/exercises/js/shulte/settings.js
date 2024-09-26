@@ -1,46 +1,48 @@
-function setType(event) {
-    let val = event.target.value + 'x' + event.target.value
-    document.getElementById("tableSize").innerHTML = val;
+let maxSize = 7;
+
+function showModeOptions() {
+    let options = document.getElementById("mode-options");
+    if (options.classList.contains("show")) {
+        options.classList.remove("show");
+        document.getElementById("mode-button").style.borderBottomRightRadius = "7px";
+        document.getElementById("mode-button-icon").className = "bx bxs-down-arrow";
+    } else {
+        options.classList.toggle("show");
+        document.getElementById("mode-button").style.borderBottomRightRadius = "0";
+        document.getElementById("mode-button-icon").className = "bx bxs-up-arrow"; 
+    }
 }
-
-let typeChosen = false;
-
-options = document.querySelectorAll("#type-option");
-for (let i = 0; i < options.length; i++) {
-    options[i].checked = false;
-}
-
-function chooseType(event) {
-    let changedIndex = 0;
-    for (let i = 0; i < options.length; i++) {
-        if (options[i].checked) {
-            changedIndex = i;
-            typeChosen = true;
+function changeMode(element) {
+    if (element.checked == true) {
+        if (element.id == "check1") {
+            document.getElementById("check2").checked = false;
+            document.getElementById("mode-selected").innerText = "Цифры"
+            maxSize = 7;
+            document.getElementById("mode-options").classList.remove("show");
+        } else {
+            document.getElementById("check1").checked = false;
+            document.getElementById("mode-selected").innerText = "Буквы"
+            maxSize = 5;
+            if (parseInt(document.getElementById("size").value) > 5) {
+                document.getElementById("size").value = 5;
+            }
+            document.getElementById("mode-options").classList.remove("show");
         }
     }
-    if (typeChosen) {
-        for (let i = 0; i < options.length; i++) {
-            if (changedIndex != i) {
-                options[i].disabled = true;
-            }
-            if (options[i].value === "Буквы" && options[i].checked === true) {
-                let input = document.getElementById("inputSize");
-                if (parseInt(input.value) > 5) {
-                    document.getElementById("tableSize").innerHTML = '5x5';
-                    input.value = '5';
-                }
-                input.max = '5';
-            }
-        }
-        changedIndex = undefined;
-        typeChosen = false;
-        return;
+}
+
+function plus() {
+    let value = parseInt(document.getElementById("size").value);
+    if (value < maxSize) {
+        value += 1;
+        document.getElementById("size").value = value;
     }
-    else {
-        for (let i = 0; i < options.length; i++) {
-            options[i].disabled = false;
-        }
-        let input = document.getElementById("inputSize");
-        input.max = '7';
+}
+
+function minus() {
+    let value = parseInt(document.getElementById("size").value);
+    if (value > 3) {
+        value -= 1;
+        document.getElementById("size").value = value;
     }
 }

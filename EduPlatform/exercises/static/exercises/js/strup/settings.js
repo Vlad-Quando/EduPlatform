@@ -16,10 +16,12 @@ function changeMode(element) {
             document.getElementById("check2").checked = false;
             document.getElementById("mode-selected").innerText = "Таблица"
             document.getElementById("time").style.display = "none";
+            document.getElementById("mode-options").classList.remove("show");
         } else {
             document.getElementById("check1").checked = false;
             document.getElementById("mode-selected").innerText = "Слова"
             document.getElementById("time").style.display = "grid";
+            document.getElementById("mode-options").classList.remove("show");
         }
     }
 }

@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
 from . import settings
+from django.contrib.auth.urls import *
 
 from EduPlatform import settings
 
@@ -25,6 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls', namespace='main')),
     path('exercises/', include('exercises.urls', namespace='exercises')),
+    path('users/', include('users.urls', namespace='users'))
     ]
 
 if settings.DEBUG:

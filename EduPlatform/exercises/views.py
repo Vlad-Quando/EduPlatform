@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.views.decorators.csrf import csrf_exempt
+# from django.views.decorators.csrf import csrf_exempt
 
-from exercises.models import Exercises, SystemImages
+from exercises.models import Exercises
 from exercises.forms import form_exercise_match
 from exercises.exercises_logic.exercise_data_collector import exercise_collector_match
 
@@ -46,5 +46,6 @@ def exercise_page(request, exercise_slug):
                 "slug": exercise_slug,
                 "data": data,
             }
+            print("CONTEXT:", context)
         page_name = "exe.html"
     return render(request, f"exercises/{templates_folder}/{page_name}", context)

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+
+<link rel="stylesheet" href="{% static 'css/user-styles/profile.css' %}">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+{% endblock style %}
+
+{% block content %}
+
+<div class="data-container">
+    <div class="profile-picture">
+        
+    </div>
+    <div class="profile-data">
+        <div class="profile-data-line">
+            <p class="data-header"></p>
+            <p class="data-body"></p>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -6,7 +6,7 @@
 
 <link rel="stylesheet" href="{% static "exercises/css/fr/settings.css" %}">
 <link rel="stylesheet" href="{% static "css/system-styles/scroller.css" %}">
-<link rel="stylesheet" href="{% static "css/system-styles/input-range.css" %}">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 {% endblock style %}
 
@@ -14,32 +14,41 @@
 
 <form method="POST" class="form">
     {% csrf_token %}
-    <div class="form-content">
-        <div class="settings-container">
-            <div class="option-selection">
-                <div class="option-title">
-                    <p class="noselect">Тексты</p>
-                </div>
-                {% get_texts as texts %}
+    <div class="setting-container">
+        <div class="text-cont">
+            <label class="text-label" id="text-label">Текст:</label>
+            {% get_texts as texts %}
+            <p id="text-selected" class="text-selected">{{ texts.0 }}</p>
+            <button class="text-button" id="text-button" type="button" onclick="showTextOptions()"><i id="text-button-icon" class='bx bxs-down-arrow'></i></button>
+            <div id="text-options" class="text-options">
                 {% for text in texts %}
-                <div class="option">
-                    <input id="text-option" type="checkbox" class="option-input" name="text" value="{{ text.name }}" onchange="chooseText(event)">
-                    <p class="option-name noselect">{{ text.name }}</p>
-                </div>
+                <p class="option-label">{{ text.name }}</p>
+                {% if text.name == texts.0.name %}
+                <input name="text" value="{{ text.name }}" class="text-option" type="checkbox" checked onchange="handleChange(this)">
+                {% else %}
+                <input name="text" value="{{ text.name }}" class="text-option" type="checkbox" disabled onchange="handleChange(this)">
+                {% endif %}
+                
                 {% endfor %}
             </div>
-            <div class="timer-setting-container">
-                <div class="lables">
-                    <p class="label noselect">Время чтения:</p>
-                    <p class="value noselect">1м</p>
-                </div>
-                <input class="timer-input" type="range" min="10" max="90" step="10" value="60" name="timer" onchange="setTimer(event)">
+        </div>
+
+        <div class="time" id="time">
+            <label class="time-label">Время чтения (с):</label>
+            <div class="time-input-container">
+                <button class="minus-button" type="button" onclick="minus()">-</button>
+                <input name="timer" class="time-input" type="number" id="time-input" min="10" max="90" value="60" step="5" readonly>
+                <button class="plus-button" type="button" onclick="plus()">+</button>
             </div>
         </div>
-        <button class="start-button" type="submit">Старт</button>
+    
+        <button class="start-button" id="start-button" type="submit">Старт</button>
     </div>
+    
+</form>
+    
 </form>
 
-<script src="{% static "exercises/js/fr/set_page.js" %}"></script>
+<script src="{% static "exercises/js/fr/settings.js" %}"></script>
 
 {% endblock content %}

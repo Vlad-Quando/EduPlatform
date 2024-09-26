@@ -1,0 +1,12 @@
+.data-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 70%;
+}
+
+.profile-picture {
+    background-color: cornflowerblue;
+}
+.profile-data {
+    background-color: cornflowerblue;
+}

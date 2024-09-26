@@ -12,7 +12,8 @@ function preparing() {
         img.setAttribute("onclick", "memoHandler(event)");
     });
 }
-setTimeout(preparing, 3000)
+let prepTime = parseInt(document.getElementById("data").dataset.preparingTime);
+setTimeout(preparing, prepTime)
 
 let passedTime = 0;
 let timer = setInterval(() => {

@@ -6,13 +6,14 @@
 
 <link rel="stylesheet" href="{% static 'exercises/css/texts/settings.css' %}">
 <link rel="stylesheet" href="{% static 'css/system-styles/scroller.css' %}">
-<link rel="stylesheet" href="{% static 'css/system-styles/checkbox.css' %}">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<!-- <link rel="stylesheet" href="{% static 'exercises/css/system-styles/checkbox.css' %}"> -->
 
 {% endblock style %}
 
 {% block content %}
 
-<form method="POST" class="form">
+<!-- <form method="POST" class="form">
     {% csrf_token %}
     <div class="form-content">
         <div class="settings-container">
@@ -43,6 +44,48 @@
         </div>
         <button class="start-button" type="submit">Старт</button>
     </div>
+</form> -->
+<form method="POST" class="form">
+    {% csrf_token %}
+    <div class="setting-container">
+        <div class="text-cont">
+            <label class="text-label" id="text-label">Текст:</label>
+            {% get_texts as texts %}
+            <p id="text-selected" class="mode-selected">{{ texts.0 }}</p>
+            <button class="mode-button" id="text-button" type="button" onclick="showTextOptions()"><i id="text-button-icon" class='bx bxs-down-arrow'></i></button>
+            <div id="text-options" class="text-options">
+                {% for text in texts %}
+                <p class="option-label">{{ text.name }}</p>
+                {% if text.name == texts.0.name %}
+                <input name="text" value="{{ text.name }}" class="text-option" type="checkbox" checked onchange="handleChange(this)">
+                {% else %}
+                <input name="text" value="{{ text.name }}" class="text-option" type="checkbox" disabled onchange="handleChange(this)">
+                {% endif %}
+                
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="mode-cont">
+            <label class="mode-label" id="mode-label">Режим:</label>
+            {% get_modes as modes %}
+            <p id="mode-selected" class="mode-selected">{{ modes.0 }}</p>
+            <button class="mode-button" id="mode-button" type="button" onclick="showModeOptions()"><i id="mode-button-icon" class='bx bxs-down-arrow'></i></button>
+            <div id="mode-options" class="mode-options">
+                {% for mode in modes %}
+                <p class="option-label">{{ mode.name }}</p>
+                {% if mode.name == modes.0.name %}
+                <input name="mode" value="{{ mode.name }}" class="mode-option" type="checkbox" checked onchange="handleChange(this)">
+                {% else %}
+                <input name="mode" value="{{ mode.name }}" class="mode-option" type="checkbox" disabled onchange="handleChange(this)">
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    
+        <button class="start-button" id="start-button" type="submit">Старт</button>
+    </div>
+    
 </form>
 
 <script src="{% static 'exercises/js/texts/settings.js' %}"></script>

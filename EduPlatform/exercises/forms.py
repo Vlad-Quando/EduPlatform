@@ -11,8 +11,8 @@ class FrForm(forms.Form):
 
 
 class MemoForm(forms.Form):
-    items_count = forms.CharField()
-    preparing_time = forms.CharField()
+    quantity = forms.CharField()
+    time = forms.CharField()
 
 
 class ShulteForm(forms.Form):
