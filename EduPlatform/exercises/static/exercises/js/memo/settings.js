@@ -1,5 +1,5 @@
-const quantityMax = 20;
-const quantityMin = 8;
+const quantityMax = 18;
+const quantityMin = 6;
 const timeMax = 10;
 const timeMin = 3;
 

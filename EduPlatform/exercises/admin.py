@@ -23,7 +23,7 @@ class ModesAdmin(admin.ModelAdmin):
 
 @admin.register(MemoItems)
 class MemoItemsAdmin(admin.ModelAdmin):
-    list_display = ['name',]
+    list_display = ['name', 'level', 'theme',]
 
 
 @admin.register(SystemImages)

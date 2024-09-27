@@ -22,6 +22,27 @@ let timer = setInterval(() => {
 
 let cardStack = [];
 let cardsQuantity = parseInt(document.getElementById("data").dataset.cardsQuantity);
+switch (cardsQuantity) {
+    case 6:
+        document.getElementById("cards-container").style.gridTemplateColumns = "1fr 1fr 1fr";
+        break;
+    case 8:
+        document.getElementById("cards-container").style.gridTemplateColumns = "1fr 1fr 1fr 1fr";
+        break;
+    case 10:
+        document.getElementById("cards-container").style.gridTemplateColumns = "1fr 1fr 1fr 1fr 1fr";
+        break;
+    case 12:
+        document.getElementById("cards-container").style.gridTemplateColumns = "1fr 1fr 1fr 1fr";
+        break;
+    case 14:
+        document.getElementById("cards-container").style.gridTemplateColumns = "1fr 1fr 1fr 1fr 1fr";
+        break;
+    case 16:
+        document.getElementById("cards-container").style.gridTemplateColumns = "1fr 1fr 1fr 1fr 1fr 1fr";
+        break;
+}
+
 let openedQuantity = 0;
 
 function checkCards() {
