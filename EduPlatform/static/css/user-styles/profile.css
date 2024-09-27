@@ -1,12 +1,55 @@
 .data-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 70%;
+    grid-template-columns: 1fr 3fr;
+    width: 60%;
+    margin: auto 10px;
 }
 
 .profile-picture {
-    background-color: cornflowerblue;
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+.picture {
+    border-radius: 20px;
+    max-width: 100%;
+}
+
 .profile-data {
-    background-color: cornflowerblue;
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    max-width: fit-content;
+}
+.data-line {
+    border-bottom: 2px solid rgba(45, 80, 144, 0.826);
+    width: 100%;
+}
+.data-header {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    margin: 5px;
+    padding: 5px 7px 5px 5px;
+    /* border: 2px solid rgba(45, 80, 144, 0.826);
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+    border-top-right-radius: 16px; */
+}
+.data-body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    margin: 5px;
+    padding: 5px;
+    /* border: 2px solid rgba(45, 80, 144, 0.826); */
 }

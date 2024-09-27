@@ -12,12 +12,20 @@
 
 <div class="data-container">
     <div class="profile-picture">
-        
+        <img class="picture" src="{{ user.image.url }}">
     </div>
     <div class="profile-data">
-        <div class="profile-data-line">
-            <p class="data-header"></p>
-            <p class="data-body"></p>
+        <div class="data-header-container">
+            <div class="data-line"><p class="data-header">Никнейм:</p></div>
+            <div class="data-line"><p class="data-header">Имя:</p></div>
+            <div class="data-line"><p class="data-header">Фамилия:</p></div>
+            <p class="data-header">Электронная почта:</p>
+        </div>
+        <div class="data-body-container">
+            <div class="data-line"><p class="data-body">{{ user.username }}</p></div>
+            <div class="data-line"><p class="data-body">{{ user.first_name }}</p></div>
+            <div class="data-line"><p class="data-body">{{ user.last_name }}</p></div>
+            <p class="data-body">{{ user.email }}</p>
         </div>
     </div>
 </div>
