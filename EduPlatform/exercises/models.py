@@ -72,7 +72,7 @@ class MemoItems(models.Model):
     
 class SystemImages(models.Model):
     name = models.CharField(verbose_name='Название', max_length=100, blank=False, unique=True)
-    image = models.ImageField(upload_to='sys_img', verbose_name="Изображение", blank=False)
+    image = models.ImageField(upload_to='sys_img', verbose_name="Изображение", blank=False, default="user_placeholder.png")
 
     def __str__(self):
         return self.name
