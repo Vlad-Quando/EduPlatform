@@ -10,22 +10,26 @@
 }
 
 .image-container {
-    border: 4px solid white;
+    border: 4px solid transparent;
     border-radius: 16px;
+    display: flex;
+    flex-direction: column;
 
     max-width: 150px;
     max-height: 150px;
     justify-self: center;
+    align-items: center;
     cursor: pointer;
 
     margin: 20px;
     
-    transition: background-color 0.4s;
+    transition: border 0.4s;
 }
 .image-container:hover {
-    background-color: white;
+    border: 4px solid white;
     .image-label {
         color: black;
+        background-color: white;
     }
 }
 
@@ -41,8 +45,13 @@
     font-weight: 600;
     text-align: center;
     margin: 3px;
+    padding: 5px 8px;
+    width: fit-content;
+    border: none;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 
-    transition: color 0.4s;
+    transition: color 0.4s, background-color 0.4s;
 }
 
 .flip {
@@ -93,7 +102,7 @@
     border: none;
     border-radius: 16px;
     width: 20%;
-    margin: 10px auto;
+    margin: 15px auto;
 
     text-decoration: none;
     font-size: 20px;

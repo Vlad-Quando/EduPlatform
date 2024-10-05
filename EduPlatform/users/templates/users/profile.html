@@ -12,7 +12,12 @@
 
 <div class="data-container">
     <div class="profile-picture">
+        {% if user.image %}
         <img class="picture" src="{{ user.image.url }}">
+        {% else %}
+        {% comment %} <img class="picture" src="{{  }}"> {% endcomment %}
+        {% endif %}
+        
     </div>
     <div class="profile-data">
         <div class="data-header-container">
@@ -28,6 +33,16 @@
             <p class="data-body">{{ user.email }}</p>
         </div>
     </div>
+</div>
+<div class="manage-panel">
+    <form action="{% url "users:profile" %}" method="GET">
+        <input type="hidden" name="logout" value="true">
+        <button type="submit" class="manage-option">Выйти</button>
+    </form>
+    {% if user.is_superuser %}
+        <a href="{% url "admin:index" %}" class="manage-option">Панель управления</a>
+        <a href="{% url "users:useradd" %}" class="manage-option">Добавить пользователя</a>
+    {% endif %}
 </div>
 
 {% endblock content %}
