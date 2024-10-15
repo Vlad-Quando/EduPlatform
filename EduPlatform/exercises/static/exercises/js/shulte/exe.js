@@ -1,23 +1,28 @@
-let table = document.getElementById("table");
+let i = 0;
+document.querySelectorAll(".cell").forEach(cell => {
+    cell.id = i;
+    i++;
+});
+
 let data = document.getElementById("data").dataset;
+size = parseInt(data.size);
 let columns = '';
 for (let i = 0; i < parseInt(data.size); i++) {
     columns = columns + '1fr ';
 }
-table.style.gridTemplateColumns = columns;
+document.getElementById("table").style.gridTemplateColumns = columns;
 
-if (parseInt(data.size) === 7 || parseInt(data.size) === 9) {
-    let labels = document.querySelectorAll(".label");
-    labels.forEach(label => {
-        label.style.fontSize = "19px";
-    });
-    let cells = document.querySelectorAll(".cell");
-    cells.forEach(cell => {
-        cell.style.margin = "7px";
-        cell.style.padding = "8px";
-    });
-    document.getElementById("current-letter").style.margin = "10px auto";
-    document.getElementById("table").style.padding = "8px";
+if (size === 3) {
+    document.getElementById("4").style.backgroundColor = "rgb(255, 151, 151)";
+} 
+else if (size === 5) {
+    document.getElementById("12").style.backgroundColor = "rgb(255, 151, 151)";
+}
+else if (size === 7) {
+    document.getElementById("24").style.backgroundColor = "rgb(255, 151, 151)";
+} 
+if (size % 2 !== 0) {
+    document.getElementById("center").style.display = "none";
 }
 
 let orderedArray = [];
