@@ -23,11 +23,7 @@
             <div id="text-options" class="text-options">
                 {% for text in texts %}
                 <p class="option-label">{{ text.name }}</p>
-                {% if text.name == texts.0.name %}
-                <input name="text" value="{{ text.name }}" class="text-option" type="checkbox" checked onchange="handleChange(this)">
-                {% else %}
-                <input name="text" value="{{ text.name }}" class="text-option" type="checkbox" disabled onchange="handleChange(this)">
-                {% endif %}
+                <input name="text" value="{{ text.name }}" class="text-option" type="checkbox" onchange="handleChange(this)">
                 
                 {% endfor %}
             </div>

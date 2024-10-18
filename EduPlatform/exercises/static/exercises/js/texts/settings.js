@@ -1,14 +1,32 @@
+window.addEventListener("DOMContentLoaded", function() {
+    let textOptions = document.querySelectorAll(".text-option");
+    textOptions[0].checked = true;
+    let modeOptions = document.querySelectorAll(".mode-option");
+    modeOptions[0].checked = true;
+});
+
+function searchText() {
+    document.getElementById("body").style.backgroundColor = "rgba(73, 90, 122, 0.826)";
+    document.getElementById("form").style.filter = "blur(10px)";
+    document.getElementById("search-window").style.display = "block";
+}
+function closeSearch() {
+    document.getElementById("search-window").style.display = "none";
+    document.getElementById("body").style.backgroundColor = "rgba(45, 80, 144, 0.826)";
+    document.getElementById("form").style.filter = "none";
+}
+
 function showTextOptions() {
     let options = document.getElementById("text-options");
     if (options.classList.contains("show")) {
         options.classList.remove("show");
-        document.getElementById("text-button").style.borderBottomRightRadius = "7px";
+        document.getElementById("search-button").style.borderBottomRightRadius = "7px";
         document.getElementById("text-label").style.borderBottomLeftRadius = "7px";
         document.getElementById("text-button-icon").className = "bx bxs-down-arrow";
         // document.getElementById("mode-button").setAttribute('onclick', 'showModeOptions()');
     } else {
         options.classList.toggle("show");
-        document.getElementById("text-button").style.borderBottomRightRadius = "0";
+        document.getElementById("search-button").style.borderBottomRightRadius = "0";
         document.getElementById("text-label").style.borderBottomLeftRadius = "0";
         document.getElementById("text-button-icon").className = "bx bxs-up-arrow";
         // document.getElementById("mode-button").setAttribute('onclick', '');
@@ -53,14 +71,14 @@ function changeText(value, checked) {
         for(let i = 0; i < options.length; i++) {
             if(options[i].value !== value) {
                 options[i].checked = false;
-                options[i].disabled = true;
             }
         }
     } else {
         for(let i = 0; i < options.length; i++) {
             options[i].checked = false;
-            options[i].disabled = false;
         }
+        options[0].checked = true;
+        document.getElementById("text-selected").innerHTML = options[0].value;
     }
     checkAllSelected();
 }
@@ -70,14 +88,14 @@ function changeMode(value, checked) {
         for(let i = 0; i < options.length; i++) {
             if(options[i].value !== value) {
                 options[i].checked = false;
-                options[i].disabled = true;
             }
         }
     } else {
         for(let i = 0; i < options.length; i++) {
             options[i].checked = false;
-            options[i].disabled = false;
         }
+        options[0].checked = true;
+        document.getElementById("mode-selected").innerHTML = options[0].value;
     }
     checkAllSelected();
 }
@@ -110,6 +128,28 @@ function checkAllSelected() {
 
 function alertRequired() {
     alert("Текст или режим не выбраны!");
+}
+
+function selectSearch(event) {
+    let chbox;
+    if (event.target.tagName == "INPUT") {
+        chbox = event.target;
+    } else {
+        chbox = event.target.querySelector('input[type="checkbox"]');
+        if (chbox.checked) {
+            chbox.checked = false;
+        } else {
+            chbox.checked = true;
+        }
+    }
+    let options = document.querySelectorAll("#searched-text");
+    if (chbox.checked) {
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].value != chbox.value) {
+                options[i].checked = false;
+            }
+        }
+    }
 }
 
 

@@ -1,3 +1,8 @@
+window.addEventListener("DOMContentLoaded", function() {
+    let textOptions = document.querySelectorAll(".text-option");
+    textOptions[0].checked = true;
+})
+
 function showTextOptions() {
     let options = document.getElementById("text-options");
     if (options.classList.contains("show")) {
@@ -27,14 +32,14 @@ function changeText(value, checked) {
         for(let i = 0; i < options.length; i++) {
             if(options[i].value !== value) {
                 options[i].checked = false;
-                options[i].disabled = true;
             }
         }
     } else {
         for(let i = 0; i < options.length; i++) {
             options[i].checked = false;
-            options[i].disabled = false;
         }
+        options[0].checked = true;
+        document.getElementById("text-selected").innerHTML = options[0].value;
     }
     checkAllSelected();
 }

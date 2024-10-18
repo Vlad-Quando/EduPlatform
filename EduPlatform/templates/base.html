@@ -10,8 +10,8 @@
     <script src="{% static 'js/base.js' %}"></script>
     <title>FunEdu</title>
   </head>
-  <body>
-    <header>
+  <body id="body">
+    <header id="header">
       <div class="header-container">
         {% comment %} <h1 class="" logo>FunEdu</h1> {% endcomment %}
         <nav>
@@ -33,7 +33,7 @@
       </div>
     </header>
 
-      {% block content %}{% endblock content %}
+    {% block content %}{% endblock content %}
     
 
   </body>
