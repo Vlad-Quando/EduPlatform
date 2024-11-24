@@ -73,6 +73,7 @@ function clearSearchField() {
 
         options.appendChild(div);
     });
+    isClearing = false;
 }
 
 function selectSearch(event) {
@@ -169,7 +170,7 @@ function levensheinLength(str1, str2) {
 
 function handleSearch(field) {
     if (!isClearing) {
-        isClearing = false;
+        // isClearing = false;
         
         let options = document.querySelectorAll(".text-option");
         let levLengths = Array();
