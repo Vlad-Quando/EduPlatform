@@ -1,30 +1,99 @@
-from random import shuffle, randint
+import random
 
 
 def word_from_end(text: str) -> str:
-    final_text = ""
-    cur_word = ""
 
-    for i in text:
-        if i.isalpha():
-            cur_word += i
+    start_word = None
+    result: str = ''
+
+    for i in range(len(text)):
+        if text[i].isalpha():
+            if start_word is None:
+                start_word = i
         else:
-            if cur_word:
-                final_text += cur_word[::-1] + i
-                cur_word = ""
+            if start_word is not None:
+                result += text[start_word:i][::-1] + text[i]
+                start_word = None
             else:
-                final_text += i
+                result += text[i]
     
-    return final_text
+    return result
 
 
-def remove_vowels(text: str) -> str:
-    text_with_no_vowels = ""
+def remove_vowels(text) -> str:
+
+    result: str = ''
     for i in text:
-        if i not in "уеыаоэяию":
-            text_with_no_vowels += i
+        if i not in 'аяоеуэюиы':
+            result += i
+    
+    return result
 
-    return text_with_no_vowels
+
+def random_spaces(text: str) -> str:
+
+    result: str = ''
+
+    for i in text:
+        if not i == ' ':
+            result += i + random.choice(['', '', ' '])
+    
+    return result
+
+
+def random_register(text: str) -> str:
+
+    result: str = ''
+
+    for i in text:
+        result += random.choice([i.upper(), i.lower()])
+    
+    return result
+
+
+def random_register_spaces(text: str) -> str:
+
+    result: str = ''
+
+    for i in text:
+        if not i == ' ':
+            result += random.choice([i.upper(), i.lower()])
+            result += random.choice(['', '', ' '])
+    
+    return result
+
+
+def remove_spaces(text: str) -> str:
+
+    result: str = ''
+
+    for i in text:
+        if not i == ' ':
+            result += i
+    
+    return result
+
+
+def annagrams(text: str) -> str:
+    start_word = None
+    result: str = ''
+
+    for i in range(len(text)):
+        if text[i].isalpha():
+            if start_word is None:
+                start_word = i
+    
+        else:
+            if start_word is not None:
+                word_list = list(text[start_word:i])
+                random.shuffle(word_list)
+                result += ''.join(word_list) + text[i]
+
+                start_word = None
+            else:
+                result += text[i]
+    
+    return result
 
 
 def shuffle_sentences_words(text: str) -> str:
@@ -42,7 +111,7 @@ def shuffle_sentences_words(text: str) -> str:
                 cur_word = ""
         elif i in ",.:?\"\'»«":
             cur_sentence.append(cur_word)
-            shuffle(cur_sentence)
+            random.shuffle(cur_sentence)
             if final_text:
                 if len(cur_sentence) == 1:
                     final_text += cur_sentence[0]
@@ -58,27 +127,6 @@ def shuffle_sentences_words(text: str) -> str:
         elif i == "\n":
             final_text += i
     
-    return final_text
-
-
-def random_spaces(text: str) -> str:
-    final_text = ''
-
-    for i in text:
-        if i.isalpha():
-            final_text += i
-            space = bool(randint(0, 1))
-            if space:
-                final_text += ' '
-
-        elif i in ".,?!\'\";:-—–":
-            final_text += i
-            space = bool(randint(0, 1))
-            if space:
-                final_text += ' '
-        elif i == "\n":
-            final_text += "<br>"
-
     return final_text
 
 
@@ -116,56 +164,12 @@ def sentences_from_end(text: str) -> str:
     return final_text
 
 
-def random_register(text: str) -> str:
-    final_text = ''
-    
-    for i in text:
-        if i.isalpha():
-            reg = randint(0, 1)
-            if reg:
-                final_text += i.upper()
-            else:
-                final_text += i.lower()
-        else:
-            final_text += i
-
-    return final_text
-
-
-def remove_spaces(text: str) -> str:
-    final_text = ""
-
-    for i in text:
-        if i != " ":
-            final_text += i
-
-    return final_text
-
-
-def anagramms(text: str) -> str:
-    final_text = ''
-    cur_word = ""
-
-    for i in text:
-        if i.isalpha():
-            cur_word += i
-        else:
-            if cur_word:
-                listed_word = list(cur_word)
-                shuffle(listed_word)
-                final_text += ''.join(listed_word) + i
-                cur_word = ""
-            else:
-                final_text += i
-
-    return final_text
-
-
 modes = {"Слова с конца": word_from_end,
          "Убрать гласные": remove_vowels,
          "Перемешать слова": shuffle_sentences_words,
          "Случайные пробелы": random_spaces,
+         "Случайные регистры и пробелы": random_register_spaces,
          "Предложения с конца": sentences_from_end,
          "Случайный регистр": random_register,
          "Убрать пробелы": remove_spaces,
-         "Анаграмма": anagramms}
+         "Анаграмма": annagrams}

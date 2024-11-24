@@ -139,7 +139,7 @@
 }
 .text-cont {
     display: grid;
-    grid-template-columns: 1.5fr 3.5fr 1fr;
+    grid-template-columns: 1fr 3.5fr 1fr 1fr;
     position: relative;
     margin-bottom: 10px;
 }
@@ -160,8 +160,8 @@
     border: none;
     outline: none;
     border-left: 1px solid gray;
-    border-top-right-radius: 7px;
-    border-bottom-right-radius: 7px;
+    /* border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px; */
 
     transition: background-color 0.3s;
 }
@@ -191,6 +191,22 @@
     color: black;
 }
 .show {display: grid;}
+.search-button {
+    background-color: white;
+    border: none;
+    outline: none;
+    border-left: 1px solid gray;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+
+    transition: background-color 0.3s;
+}
+.search-button i {
+    font-size: 1.3em;
+}
+.search-button:hover {
+    background-color: rgb(225, 225, 225);
+}
 
 .start-button {
     border: none;
