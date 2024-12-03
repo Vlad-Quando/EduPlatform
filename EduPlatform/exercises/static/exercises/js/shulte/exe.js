@@ -1,3 +1,7 @@
+window.addEventListener("DOMContentLoaded", function() {
+    this.document.getElementById("time-passed").style.display = "none";
+})
+
 let i = 0;
 document.querySelectorAll(".cell").forEach(cell => {
     cell.id = i;
@@ -42,8 +46,28 @@ function shulteGame(event) {
     if (orderedArray.length === 0) {
         if (isFinalLetter) {
             currentLetter.innerHTML = "Молодец!";
+            timePassedLabel = document.getElementById("time-passed");
+            timePassedLabel.style.display = "block";
+            timePassedLabel.innerHTML = getTimeResult(timePassed);
         } else {
             isFinalLetter = true;
         }
+        
     }
+    
 }
+
+function getTimeResult(timePassed) {
+    if (timePassed >= 59) {
+        minutes = (Math.floor(timePassed / 60)).toString();
+        seconds = (timePassed % 60).toString();
+
+        return minutes + " мин. " + seconds + " сек."
+    }
+    return timePassed.toString() + " сек."
+}
+
+let timePassed = 0;
+timer = setInterval(() => {
+    timePassed += 1;
+}, 1000)

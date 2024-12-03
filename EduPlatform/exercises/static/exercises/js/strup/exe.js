@@ -39,7 +39,6 @@ else if (mode === "words") {
     let container = document.getElementById("words");
     let stopButton = document.getElementById("stop");
     stopButton.style.display = "none";
-    // let words = document.getElementById("words").dataset.words[0];
 
     // Получаем значение атрибута data-words
     let wordsData = document.getElementById("words-data").dataset.words;
@@ -70,9 +69,6 @@ else if (mode === "words") {
                 wordIndex++;
             } else {
                 clearInterval(timer);
-                // document.querySelector(".words-word").style.display = "none";
-                // document.getElementById("end").style.display = "block";
-                // container.replaceChildren(document.getElementById("end"));
             }
         }, time * 1000);
     });

@@ -1,11 +1,11 @@
 .container {
     display: grid;
-    grid-template-columns: 70% 30%;
+    grid-template-columns: 100%;
 }
 
 .text-container {
     background-color: white;
-    margin: 20px;
+    margin: 20px 100px;
     padding: 15px;
     border: none;
     border-radius: 16px;
@@ -19,12 +19,19 @@
 }
 
 .interface-container {
-    margin: 20px;
+    margin: 20px 100px;
     height: 40%;
 
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
     row-gap: 20px;
+    column-gap: 20px;
+
+    
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+        "timer end"
+        "start stop";
 }
 
 .end-button {
@@ -78,6 +85,8 @@
     font-weight: 600;
     cursor: pointer;
 
+    height: 57px;
+
     transition: background-color 0.3s;
 }
 
@@ -114,48 +123,38 @@
     cursor: pointer;
 }
 
-@media(max-width: 1000px) {
-    .text-container {
-        margin: 10px;
-    }
-    .interface-container {
-        margin: 10px;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        column-gap: 10px;
-        grid-template-areas: 
-            "timer end"
-            "start stop";
-    }
-    .set-timer {
-        height: 57px;
-    }
+#timer {
+    grid-area: timer;
+}
+#end-button {
+    grid-area: end;
+}
+#stop-timer {
+    grid-area: start;
+}
+#stop-timer-but {
+    grid-area: stop;
+}
 
-    #timer {
-        grid-area: timer;
-    }
-    #end-button {
-        grid-area: end;
-    }
-    #stop-timer {
-        grid-area: start;
-    }
-    #stop-timer-but {
-        grid-area: stop;
-    }
-
-    .container {
-        grid-template-columns: 100%;
+@media(max-width: 1100px) {
+    .text-container p {
+        font-size: 28px;
     }
 }
-@media(max-width: 900px) {
+@media(max-width: 1000px) {
+    .text-container {
+        margin: 20px 70px 5px 70px;
+    }
+    .interface-container {
+        margin: 10px 70px;
+    }
     .text-container p {
         font-size: 25px;
     }
 }
-@media(max-width: 700px) {
+@media(max-width: 750px) {
     .text-container p {
-        font-size: 23px;
+        font-size: 22px;
     }
     .timer,
     .end-button,
@@ -165,8 +164,29 @@
     .set-timer {
         max-height: 52px;
     }
+    .text-container {
+        margin: 15px 50px 5px 50px;
+    }
+    .interface-container {
+        margin: 10px 50px;
+    }
+}
+@media(max-width: 600px) {
+    .text-container {
+        margin: 15px 40px;
+    }
+    .interface-container {
+        margin: 10px 40px 5px 40px;
+        row-gap: 10px;
+    }
 }
 @media(max-width: 550px) {
+    .text-container {
+        margin: 20px 20px;
+    }
+    .interface-container {
+        margin: 10px 20px 5px 20px;
+    }
     .text-container p {
         font-size: 20px;
     }

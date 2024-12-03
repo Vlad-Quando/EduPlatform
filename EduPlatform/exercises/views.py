@@ -1,5 +1,4 @@
-from django.shortcuts import render
-# from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render, redirect
 
 from exercises.models import Exercises
 from exercises.forms import form_exercise_match
@@ -17,7 +16,6 @@ def exercises_list(request):
     return render(request, "exercises/system-templates/exercises-list.html", context)
 
 
-# @csrf_exempt
 def exercise_page(request, exercise_slug):
     global templates_folder
     page_name = ""
@@ -46,6 +44,9 @@ def exercise_page(request, exercise_slug):
                 "slug": exercise_slug,
                 "data": data,
             }
-            print("CONTEXT:", context)
         page_name = "exe.html"
-    return render(request, f"exercises/{templates_folder}/{page_name}", context)
+    try:
+        return render(request, f"exercises/{templates_folder}/{page_name}", context)
+    except Exception as e:
+        print("EXERCISES ERROR - exercise_page:", e)
+        return redirect("/")

@@ -9,7 +9,10 @@
 
 {% block content %}
 <input id="data" type="hidden" data-size="{{ data.size }}" data-first="first" data-second="second">
-<p class="current-letter" id="current-letter"></p>
+<div class="label-container">
+    <p class="current-letter" id="current-letter"></p>
+    <p class="current-letter" id="time-passed"></p>
+</div>
 {% comment %} <div class="table-wrapper">
     
 </div> {% endcomment %}

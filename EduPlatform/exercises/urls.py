@@ -1,3 +1,5 @@
+import re
+
 from django.urls import path
 from exercises.views import exercises_list, exercise_page
 

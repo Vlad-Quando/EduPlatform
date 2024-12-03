@@ -1,11 +1,11 @@
 .container {
     display: grid;
-    grid-template-columns: 70% 30%;
+    grid-template-columns: 100%;
 }
 
 .text-container {
     background-color: white;
-    margin: 20px;
+    margin: 20px 150px;
     padding: 15px;
     border: none;
     border-radius: 16px;
@@ -18,8 +18,7 @@
 }
 
 .interface-container {
-    margin: 20px;
-    padding: 15px;
+    margin: 20px auto;
 }
 
 .end-button {
@@ -46,30 +45,20 @@
 
 @media(max-width: 1000px) {
     .text-container {
-        margin-right: 0;
-    }
-    .interface-container {
-        margin-left: 0;
-    }
-    .container {
-        grid-template-columns: 80% 20%;
+        margin: 10px 50px;
     }
 }
 @media(max-width: 900px) {
-    .text-container {
-        margin-right: 20px;
-    }
     .interface-container {
-        margin-left: 20px;
         padding-left: 0;
-    }
-    .container {
-        grid-template-columns: 100%;
     }
 }
 @media(max-width: 750px) {
     .text-container p {
         font-size: 25px;
+    }
+    .text-container {
+        margin: 10px 30px;
     }
 }
 @media(max-width: 550px) {
@@ -82,15 +71,16 @@
 }
 @media(max-width: 400px) {
     .text-container {
-        margin: 20px 10px 10px 10px;
+        margin: 10px 10px;
     }
-    .interface-container {
-        margin: 10px 10px 20px 10px;
+    .text-container p {
+        font-size: 18px;
     }
     .end-button {
         font-size: 14px;
     }
 }
+
 @media(max-width: 360px) {
     .text-container p {
         font-size: 16px;

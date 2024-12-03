@@ -19,14 +19,17 @@
     padding: 10px;
     border: none;
     border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .picture {
     border-radius: 20px;
     width: 200px;
 }
+/* .picture-container {
+    position: absolute;
+}
+.change-image-but {
+    position: relative;
+} */
 
 .profile-data {
     background-color: white;
@@ -116,4 +119,17 @@
 }
 .manage-option:active {
     background-color: rgb(171, 171, 171);
+}
+
+
+@media(max-width: 630px) {
+    .data-container {
+        flex-direction: column;
+    }
+}
+@media(max-width: 400px) {
+    .data-header,
+    .data-body {
+        font-size: 14px;
+    }
 }
