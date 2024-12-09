@@ -13,17 +13,18 @@
 
 <div class="profile-body">
     <div class="data-container">
-        <div class="profile-picture">
-            {% comment %}<div class="picture-container">{% endcomment %}
+        <div class="profile-picture-container">
             {% if user.image %}
-            <img class="picture" src="{{ user.image.url }}">
+            <div class="profile-picture" style="
+                background-image: url('{{ user.image.url }}');
+            ">            
+            </div>
             {% else %}
-            {% comment %} <img class="picture" src="{{  }}"> {% endcomment %}
+                <div class="profile-picture" style="
+                    background-image: url('{% static "users/images/default-avatar.png" %}');
+                ">            
+                </div>
             {% endif %}
-                {% comment %}<button class="change-image-but">C</button>
-            </div>{% endcomment %}
-            
-            
         </div>
         <div class="profile-data">
             <div class="data-header-container">

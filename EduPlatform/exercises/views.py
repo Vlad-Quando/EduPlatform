@@ -48,5 +48,4 @@ def exercise_page(request, exercise_slug):
     try:
         return render(request, f"exercises/{templates_folder}/{page_name}", context)
     except Exception as e:
-        print("EXERCISES ERROR - exercise_page:", e)
         return redirect("/")

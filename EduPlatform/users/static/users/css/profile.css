@@ -13,12 +13,24 @@
     align-items: center;
 }
 
+/* .profile-picture-container {
+    padding: 5px;
+    background-color: white;
+    min-width: 170px;
+    min-height: 170px;
+} */
+
 .profile-picture {
     background-color: white;
     margin: 10px auto;
     padding: 10px;
-    border: none;
-    border-radius: 10px;
+    border: 5px solid rgb(255, 255, 255);
+    border-radius: 90px;
+    min-width: 165px;
+    min-height: 165px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .picture {
     border-radius: 20px;

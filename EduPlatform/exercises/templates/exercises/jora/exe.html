@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static "exercises/css/jora/exe.css" %}">
+{% endblock style %}
+
+{% block content %}
+<input type="hidden" id="data-jora" data-jora="{% static "exercises/exercises-img/jora-img.png" %}">
+<input type="hidden" id="data-size" data-size="{{ data.size }}">
+<input type="hidden" id="data-time" data-time="{{ data.time }}">
+<input type="hidden" id="data-steps" data-steps="{{ data.steps }}">
+
+<div class="table" id="table">
+    {% for item in data.items %}
+    <div id="{{ item.pos }}" class="cell cell-closed" onclick="isThere(event)">
+    </div>
+    {% endfor %}
+</div>
+<div class="end-but-container">
+    <a class="end-button" href="{% url "exercises:exercise-page" "drakosha-zhora" %}">Завершить</a>
+    {% comment %} <div class="label-container"> {% endcomment %}
+    <div class="label-border">
+        <p class="info-label" id="info-label">Готовы?</p>
+    </div>
+    {% comment %} </div> {% endcomment %}
+</div>
+
+<script src="{% static "exercises/js/jora/exe.js" %}"></script>
+
+{% endblock content %}

@@ -27,10 +27,15 @@ class StrupForm(forms.Form):
     time = forms.CharField()
 
 
+class JoraForm(forms.Form):
+    size = forms.CharField()
+
+
 form_exercise_match = {
     "texts": TextForm,
     "skorochtenie": FrForm,
     "memo": MemoForm,
     "shulte-table": ShulteForm,
     "strup-test": StrupForm,
+    "drakosha-zhora": JoraForm,
 }

@@ -57,10 +57,8 @@ def collect_data_for_memo(context: QueryDict):
 
 
 def collect_data_for_shulte(context: QueryDict):
-    print(context)
     size = int(context['size'][0])
     table_type = context['type']
-    print(size, table_type)
 
     if table_type == "nums":
         ordered_array = list(i for i in range(1, size ** 2 + 1))
@@ -116,10 +114,25 @@ def collect_data_for_strup(context: QueryDict):
         return {'mode': mode, 'words': text, 'time': float(context['time'])}
 
 
+def collect_data_for_jora(context:QueryDict):
+    time = float(context['timer'])
+    size = int(context['size'])
+    steps = int(context['steps'])
+
+    items = list()
+
+    for i in range(size):
+        for j in range(size):
+            items.append({'pos': f"{i}-{j}"})
+
+    return {"items": items, "time": time, "size": size, "steps": steps}
+
+
 exercise_collector_match = {
     "texts": collect_data_for_texts,
     "skorochtenie": collect_data_for_fr,
     "memo": collect_data_for_memo,
     "shulte-table": collect_data_for_shulte,
     "strup-test": collect_data_for_strup,
+    "drakosha-zhora": collect_data_for_jora,
 }
