@@ -36,12 +36,6 @@
     border-radius: 20px;
     width: 200px;
 }
-/* .picture-container {
-    position: absolute;
-}
-.change-image-but {
-    position: relative;
-} */
 
 .profile-data {
     background-color: white;
@@ -63,10 +57,6 @@
     font-size: 18px;
     margin: 5px;
     padding: 5px 7px 5px 5px;
-    /* border: 2px solid rgba(45, 80, 144, 0.826);
-    border-top-left-radius: 16px;
-    border-bottom-left-radius: 16px;
-    border-top-right-radius: 16px; */
 }
 .data-body {
     font-family: Arial, Helvetica, sans-serif;

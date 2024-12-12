@@ -69,7 +69,7 @@ def collect_data_for_shulte(context: QueryDict):
         unordered_array = ordered_array.copy()
         shuffle(unordered_array)
 
-    return {'ordered_array': ordered_array, 'unordered_array': unordered_array, 'size': size}
+    return {'ordered_array': ordered_array[::-1], 'unordered_array': unordered_array, 'size': size}
 
 
 def collect_data_for_strup(context: QueryDict):

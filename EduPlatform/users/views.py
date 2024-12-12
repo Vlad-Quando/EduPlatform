@@ -2,11 +2,9 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from users.forms import UserForm
-from django.contrib.auth import authenticate, login, get_user_model, logout
+from django.contrib.auth import authenticate, login, logout
 from users.models import User
 from exercises.models import SystemImages
-
-# User = get_user_model()
 
 
 def login_view(request):
@@ -23,11 +21,7 @@ def login_view(request):
             else:
                 form = UserForm()
     return render(request, "users/login.html")
-    #     else:
-    #         form = UserForm()
-    #         return render(request, "users/login.html")
-    # else:
-    #     return render(request, "users/login.html")
+
 
 @login_required(login_url="users:login")
 def profile(request):
@@ -40,6 +34,10 @@ def profile(request):
         'user': user
     }
     return render(request, "users/profile.html", data)
+
+
+def options_list(request):
+    return render(request, "users/options_list.html")
 
 
 def useradd(request):
@@ -63,10 +61,4 @@ def useradd(request):
                 'img_placeholder': SystemImages.objects.get(name="Profile_placeholder")
             }
             return render(request, "users/profile.html", data)
-        # print('Username:', username)
-        # print('Firstname:', firstname)
-        # print('Lastname:', lastname)
-        # print('Email:', email)
-        # print('Password:', password)
-        # print('Confirm_password:', confirm_password)
     return render(request, "users/useradd.html")

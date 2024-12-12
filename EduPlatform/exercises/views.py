@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 
-from exercises.models import Exercises
+from exercises.models import Exercises, Texts
 from exercises.forms import form_exercise_match
 from exercises.exercises_logic.exercise_data_collector import exercise_collector_match
 
@@ -49,3 +50,13 @@ def exercise_page(request, exercise_slug):
         return render(request, f"exercises/{templates_folder}/{page_name}", context)
     except Exception as e:
         return redirect("/")
+
+
+def add_text(request):
+    if request.method == "POST":
+        try:
+            Texts.objects.create(name=request.POST['name'], content=request.POST['content'])
+            messages.info(request, "Текст успешно сохранён!")
+        except Exception as e:
+            messages.debug(request, e)
+    return redirect("/users/options")
