@@ -1,14 +1,14 @@
 let size = parseInt(document.getElementById("data-size").dataset.size);
 let time = parseFloat(document.getElementById("data-time").dataset.time);
 let maxPos = size - 1;
-let minPos = 0;
+minPos = 0;
 let clicksAvailable = false;
 
 let joraPos = [];
 
 // Normalizing table's layout
 let columns = '';
-for (let i = 0; i < parseInt(size); i++) {
+for (let i = 0; i < parseInt(size) + 1; i++) {
     columns = columns + '1fr ';
 }
 document.getElementById("table").style.gridTemplateColumns = columns;
@@ -37,8 +37,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
 // Setting the start Jora's position
 function startJoraPos() {
-    let joraX = Math.floor(Math.random() * (maxPos - minPos + 1) + minPos);
-    let joraY = Math.floor(Math.random() * (maxPos - minPos + 1) + minPos);
+    let joraX = parseInt((size - 1) / 2);
+    let joraY = parseInt((size - 1) / 2);
     let cellId = `${joraX}-${joraY}`
 
     let cell = document.getElementById(cellId);
@@ -97,26 +97,78 @@ function joraGo(joraPos) {
 // Prints Jora's direction in a label
 function showDirection(directionCode) {
     let label = document.getElementById("info-label");
+    let iconCont = document.getElementById("icon-arrow");
+    let icon;
 
     switch(directionCode) {
         case 1: // up
             label.innerHTML = "Вверх";
+            
+            icon = document.createElement('i');
+            icon.classList.add("bx");
+            icon.classList.add("bxs-up-arrow");
+            icon.style.color = "#ffffff";
+            icon.style.fontSize = "38px";
+
+            while (iconCont.firstChild) {
+                iconCont.removeChild(iconCont.firstChild);
+            }
+            iconCont.appendChild(icon);
+
             break;
         case 2: // down
             label.innerHTML = "Вниз";
+
+            icon = document.createElement('i');
+            icon.classList.add("bx");
+            icon.classList.add("bxs-down-arrow");
+            icon.style.color = "#ffffff";
+            icon.style.fontSize = "38px";
+
+            while (iconCont.firstChild) {
+                iconCont.removeChild(iconCont.firstChild);
+            }
+            iconCont.appendChild(icon);
+
             break;
         case 3: // left
             label.innerHTML = "Влево";
+
+            icon = document.createElement('i');
+            icon.classList.add("bx");
+            icon.classList.add("bxs-left-arrow");
+            icon.style.color = "#ffffff";
+            icon.style.fontSize = "38px";
+
+            while (iconCont.firstChild) {
+                iconCont.removeChild(iconCont.firstChild);
+            }
+            iconCont.appendChild(icon);
+
             break;
         case 4: // right
             label.innerHTML = "Вправо";
+
+            icon = document.createElement('i');
+            icon.classList.add("bx");
+            icon.classList.add("bxs-right-arrow");
+            icon.style.color = "#ffffff";
+            icon.style.fontSize = "38px";
+
+            while (iconCont.firstChild) {
+                iconCont.removeChild(iconCont.firstChild);
+            }
+            iconCont.appendChild(icon);
+
             break;
     }
 
     label.classList.add("blink");
+    icon.classList.add("blink");
     
     setTimeout(() => {
         label.classList.remove("blink");
+        icon.classList.remove("blink");
     }, 200);
 }
 

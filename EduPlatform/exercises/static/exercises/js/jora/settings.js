@@ -1,14 +1,14 @@
 const maxTime = 2;
 const minTime = 0.5;
-const maxSize = 10;
-const minSize = 4;
+const maxSize = 9;
+const minSize = 3;
 const minSteps = 3;
 const maxSteps = 10;
 
 function plusSize() {
     let value = parseInt(document.getElementById("size-input").value);
     if (value < maxSize) {
-        value += 1;
+        value += 2;
         document.getElementById("size-input").value = value.toString();
     }
 }
@@ -16,7 +16,7 @@ function plusSize() {
 function minusSize() {
     let value = parseInt(document.getElementById("size-input").value);
     if (value > minSize) {
-        value -= 1;
+        value -= 2;
         document.getElementById("size-input").value = value.toString();
     }
 }

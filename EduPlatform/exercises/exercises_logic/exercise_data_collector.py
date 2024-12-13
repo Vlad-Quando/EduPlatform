@@ -119,11 +119,16 @@ def collect_data_for_jora(context:QueryDict):
     size = int(context['size'])
     steps = int(context['steps'])
 
-    items = list()
+    items = list([{'content': "<i class='bx bxs-cat' style='color:#ffffff; font-size: 38px;'></i>", 'type': 'cord'}, {'content': 'А', 'type': 'cord'}, {'content': 'Б', 'type': 'cord'},
+                 {'content': 'В', 'type': 'cord'}, {'content': 'Г', 'type': 'cord'},
+                 {'content': 'Д', 'type': 'cord'}, {'content': 'Е', 'type': 'cord'},
+                 {'content': 'Ж', 'type': 'cord'}, {'content': 'З', 'type': 'cord'},
+                 {'content': 'И', 'type': 'cord'}])[:size + 1]
 
     for i in range(size):
+        items.append({'content': i + 1, 'type': 'cord'})
         for j in range(size):
-            items.append({'pos': f"{i}-{j}"})
+            items.append({'pos': f"{i}-{j}", 'type': 'cell'})
 
     return {"items": items, "time": time, "size": size, "steps": steps}
 

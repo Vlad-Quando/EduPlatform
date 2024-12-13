@@ -3,6 +3,9 @@
 
 {% block style %}
 <link rel="stylesheet" href="{% static "exercises/css/jora/exe.css" %}">
+<link rel="stylesheet" href="{% static "css/system-styles/icons.css" %}">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+{% comment %} <link rel="stylesheet" href="{% static "css/system-styles/icons1.css" %}"> {% endcomment %}
 {% endblock style %}
 
 {% block content %}
@@ -11,20 +14,40 @@
 <input type="hidden" id="data-time" data-time="{{ data.time }}">
 <input type="hidden" id="data-steps" data-steps="{{ data.steps }}">
 
-<div class="table" id="table">
-    {% for item in data.items %}
-    <div id="{{ item.pos }}" class="cell cell-closed" onclick="isThere(event)">
+
+
+<div class="upper-container">
+    <div class="end-but-container upper-el">
+        <a class="end-button" href="{% url "exercises:exercise-page" "drakosha-zhora" %}">Завершить</a>
     </div>
-    {% endfor %}
-</div>
-<div class="end-but-container">
-    <a class="end-button" href="{% url "exercises:exercise-page" "drakosha-zhora" %}">Завершить</a>
-    {% comment %} <div class="label-container"> {% endcomment %}
-    <div class="label-border">
+
+    <div class="label-border upper-el">
         <p class="info-label" id="info-label">Готовы?</p>
+    
+        <div id="icon-arrow">
+            <i class='bx bxs-cat' style='color:#ffffff; font-size: 38px;'></i>
+        </div>
     </div>
-    {% comment %} </div> {% endcomment %}
+
+    <div class="upper-el"></div>
 </div>
+
+<div class="table-wrapper">
+    <div class="table" id="table">
+        {% for item in data.items %}
+        {% if item.type == 'cell' %}
+        <div id="{{ item.pos }}" class="cell cell-closed" onclick="isThere(event)">
+        </div>
+        {% elif item.type == 'cord' %}
+        <div class="cell-cord">{{ item.content | safe }}
+        </div>
+        {% endif %}
+        
+        {% endfor %}
+    </div>
+</div>
+
+
 
 <script src="{% static "exercises/js/jora/exe.js" %}"></script>
 
