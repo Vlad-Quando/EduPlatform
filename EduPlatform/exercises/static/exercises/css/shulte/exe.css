@@ -21,12 +21,12 @@
     z-index: 100;
     min-width: 10px;
     background-color: rgb(255, 151, 151);
-    min-width: 10px;
-    min-height: 10px;
+    min-width: 19px;
+    min-height: 19px;
     border-radius: 10px;
     border: none;
-    top: 16.5vw;
-    left: 16.5vw;
+    top: 16.12vw;
+    left: 16.12vw;
 }
 
 .cell {
@@ -46,7 +46,7 @@
 
 .label {
     color: black;
-    font-size: 19px;
+    font-size: 29px;
     font-weight: 700;
     text-align: center;
     cursor: pointer;
@@ -56,6 +56,18 @@
     display: none;
 }
 
+.upper-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 10px;
+}
+
+.upper-el {
+    min-width: 50px;
+    width: 50px;
+}
+
 .current-letter {
     color: white;
     font-size: 22px;
@@ -63,10 +75,12 @@
     text-align: center;
     border: 3px solid white;
     border-radius: 16px;
-    padding: 10px;
+    padding: 10px 20px;
     margin: 10px 20px;
     width: 10%;
     min-width: fit-content;
+
+    white-space: nowrap;
 }
 
 .label-container {
@@ -87,7 +101,7 @@
     padding: 15px 30px 15px 30px;
     border: none;
     border-radius: 16px;
-    width: 20%;
+    width: fit-content;
     margin: 10px auto;
     min-width: 20%;
 

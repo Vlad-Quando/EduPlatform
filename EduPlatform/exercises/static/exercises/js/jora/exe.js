@@ -1,27 +1,59 @@
 let size = parseInt(document.getElementById("data-size").dataset.size);
 let time = parseFloat(document.getElementById("data-time").dataset.time);
 let maxPos = size - 1;
-minPos = 0;
+let minPos = 0;
 let clicksAvailable = false;
+let moveSound;
+let countSound;
 
 let joraPos = [];
 
 // Normalizing table's layout
-let columns = '';
-for (let i = 0; i < parseInt(size) + 1; i++) {
-    columns = columns + '1fr ';
+let columns = [];
+for (let i = 0; i < size + 1; i++) {
+    columns.push('2fr');
 }
-document.getElementById("table").style.gridTemplateColumns = columns;
+columns[0] = '1fr'
+columnsStr = ''
+for (let i = 0; i < size + 1; i++) {
+    columnsStr = columnsStr + columns[i].toString() + ' ';
+}
+document.getElementById("table").style.gridTemplateColumns = columnsStr;
+document.getElementById("cord-alpha-container").style.gridTemplateColumns = columnsStr;
 
 // Starting procedure
 window.addEventListener("DOMContentLoaded", () => {
     joraPos = startJoraPos();
 
+    moveSound = new Audio("/static/sounds/moveSound1.mp3");
+    countSound = new Audio("/static/sounds/countSound.mp3");
+
+    // let timer = document.getElementById("info-label");
+    // let timerValue = 4;
+    // startTimer = setInterval(() => {
+    //     timerValue--;
+    //     timer.innerHTML = timerValue.toString();
+    //     countSound.play();
+
+    //     if(timerValue == 0) {
+    //         clearInterval(startTimer);
+    //         let cell = document.getElementById(`${joraPos[0]}-${joraPos[1]}`);
+    //         cell.classList.remove("cell-opened");
+    //         cell.classList.add("cell-closed");
+
+    //         moveJora(joraPos);
+    //     }
+
+    // }, 1000)
+})
+
+function startJora() {
     let timer = document.getElementById("info-label");
     let timerValue = 4;
     startTimer = setInterval(() => {
         timerValue--;
         timer.innerHTML = timerValue.toString();
+        countSound.play();
 
         if(timerValue == 0) {
             clearInterval(startTimer);
@@ -33,7 +65,7 @@ window.addEventListener("DOMContentLoaded", () => {
         }
 
     }, 1000)
-})
+}
 
 // Setting the start Jora's position
 function startJoraPos() {
@@ -91,6 +123,7 @@ function joraGo(joraPos) {
             break;
     }
 
+    moveSound.play();
     showDirection(directionCode);
 }
 

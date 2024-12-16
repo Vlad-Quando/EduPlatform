@@ -9,10 +9,18 @@
 
 {% block content %}
 <input id="data" type="hidden" data-size="{{ data.size }}" data-first="first" data-second="second">
-<div class="label-container">
-    <p class="current-letter" id="current-letter"></p>
-    <p class="current-letter" id="time-passed"></p>
+<div class="upper-container">
+    <div class="end-but-container upper-el">
+        <a class="end-button" href="{% url "exercises:exercise-page" "shulte-table" %}">Завершить</a>
+    </div>
+    <div class="label-container upper-el">
+        <p class="current-letter" id="current-letter"></p>
+        <p class="current-letter time-passed" id="time-passed"></p>
+    </div>
+    <div class="upper-el"></div>
 </div>
+
+
 <div class="table" id="table">
     {% for item in data.unordered_array %}
     <div id="" class="cell" onclick="shulteGame(event)">

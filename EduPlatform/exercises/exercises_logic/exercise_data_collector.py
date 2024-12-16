@@ -118,19 +118,21 @@ def collect_data_for_jora(context:QueryDict):
     time = float(context['timer'])
     size = int(context['size'])
     steps = int(context['steps'])
+    items = list()
 
-    items = list([{'content': "<i class='bx bxs-cat' style='color:#ffffff; font-size: 38px;'></i>", 'type': 'cord'}, {'content': 'А', 'type': 'cord'}, {'content': 'Б', 'type': 'cord'},
-                 {'content': 'В', 'type': 'cord'}, {'content': 'Г', 'type': 'cord'},
-                 {'content': 'Д', 'type': 'cord'}, {'content': 'Е', 'type': 'cord'},
-                 {'content': 'Ж', 'type': 'cord'}, {'content': 'З', 'type': 'cord'},
-                 {'content': 'И', 'type': 'cord'}])[:size + 1]
+    alpha_cords = list([{'content': "<i class='bx bxs-cat' style='color:#ffffff; font-size: 38px;'></i>", 'type': 'cord'},
+                  {'content': 'А', 'type': 'cordA'}, {'content': 'Б', 'type': 'cordA'},
+                  {'content': 'В', 'type': 'cordA'}, {'content': 'Г', 'type': 'cordA'},
+                  {'content': 'Д', 'type': 'cordA'}, {'content': 'Е', 'type': 'cordA'},
+                  {'content': 'Ж', 'type': 'cordA'}, {'content': 'З', 'type': 'cordA'},
+                  {'content': 'И', 'type': 'cordA'}])[:size + 1]
 
     for i in range(size):
-        items.append({'content': i + 1, 'type': 'cord'})
+        items.append({'content': i + 1, 'type': 'cordN'})
         for j in range(size):
             items.append({'pos': f"{i}-{j}", 'type': 'cell'})
 
-    return {"items": items, "time": time, "size": size, "steps": steps}
+    return {"items": items, 'alphaCords': alpha_cords, "time": time, "size": size, "steps": steps}
 
 
 exercise_collector_match = {
