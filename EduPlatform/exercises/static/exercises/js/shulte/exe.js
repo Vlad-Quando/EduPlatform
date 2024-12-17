@@ -2,14 +2,22 @@ window.addEventListener("DOMContentLoaded", function() {
     this.document.getElementById("time-passed").style.display = "none";
 })
 
+let data = document.getElementById("data").dataset;
+let angle = parseInt(data.angle);
+
+document.querySelectorAll(".label").forEach(label => {
+    
+    label.style.transform = `rotate(${angle}deg)`;
+})
+
 let i = 0;
 document.querySelectorAll(".cell").forEach(cell => {
     cell.id = i;
     i++;
 });
 
-let data = document.getElementById("data").dataset;
-size = parseInt(data.size);
+
+let size = parseInt(data.size);
 let columns = '';
 for (let i = 0; i < parseInt(data.size); i++) {
     columns = columns + '1fr ';

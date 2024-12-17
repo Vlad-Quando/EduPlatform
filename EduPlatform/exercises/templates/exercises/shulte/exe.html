@@ -8,7 +8,8 @@
 {% endblock style %}
 
 {% block content %}
-<input id="data" type="hidden" data-size="{{ data.size }}" data-first="first" data-second="second">
+<input id="data" type="hidden" data-size="{{ data.size }}" data-angle="{{ data.angle }}">
+<input id="data" type="hidden" data-angle="{{ data.angle }}">
 <div class="upper-container">
     <div class="end-but-container upper-el">
         <a class="end-button" href="{% url "exercises:exercise-page" "shulte-table" %}">Завершить</a>

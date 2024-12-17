@@ -59,6 +59,7 @@ def collect_data_for_memo(context: QueryDict):
 def collect_data_for_shulte(context: QueryDict):
     size = int(context['size'][0])
     table_type = context['type']
+    angle = context['angle']
 
     if table_type == "nums":
         ordered_array = list(i for i in range(1, size ** 2 + 1))
@@ -69,7 +70,7 @@ def collect_data_for_shulte(context: QueryDict):
         unordered_array = ordered_array.copy()
         shuffle(unordered_array)
 
-    return {'ordered_array': ordered_array[::-1], 'unordered_array': unordered_array, 'size': size}
+    return {'ordered_array': ordered_array[::-1], 'unordered_array': unordered_array, 'size': size, 'angle': angle}
 
 
 def collect_data_for_strup(context: QueryDict):

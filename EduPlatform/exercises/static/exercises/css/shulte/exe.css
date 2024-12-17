@@ -50,6 +50,7 @@
     font-weight: 700;
     text-align: center;
     cursor: pointer;
+    transform: rotate(0);
 }
 
 .hidden-cell {

@@ -18,6 +18,7 @@ class MemoForm(forms.Form):
 class ShulteForm(forms.Form):
     size = forms.CharField()
     type = forms.CharField()
+    angle = forms.CharField()
 
 
 class StrupForm(forms.Form):

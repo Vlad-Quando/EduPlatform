@@ -29,9 +29,18 @@
         <div class="quantity">
             <label class="quantity-label">Размер таблицы:</label>
             <div class="quantity-input-container">
-                <button class="minus-button" type="button" onclick="minus()">-</button>
+                <button class="minus-button" type="button" onclick="minusSize()">-</button>
                 <input name="size" class="quantity-input" type="number" id="size" min="3" max="7" value="4">
-                <button class="plus-button" type="button" onclick="plus()">+</button>
+                <button class="plus-button" type="button" onclick="plusSize()">+</button>
+            </div>
+        </div>
+
+        <div class="angle">
+            <label class="angle-label">Угол:</label>
+            <div class="angle-input-container">
+                <button class="minus-button" type="button" onclick="minusAngle()">-</button>
+                <input name="angle" class="angle-input" type="number" id="angle" min="0" max="180" value="0">
+                <button class="plus-button" type="button" onclick="plusAngle()">+</button>
             </div>
         </div>
     

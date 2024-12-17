@@ -1,4 +1,7 @@
-let maxSize = 7;
+const maxSize = 7;
+const minSize = 3;
+const maxAngle = 180;
+const minAngle = 0;
 
 function showModeOptions() {
     let options = document.getElementById("mode-options");
@@ -31,7 +34,7 @@ function changeMode(element) {
     }
 }
 
-function plus() {
+function plusSize() {
     let value = parseInt(document.getElementById("size").value);
     if (value < maxSize) {
         value += 1;
@@ -39,10 +42,27 @@ function plus() {
     }
 }
 
-function minus() {
+function minusSize() {
     let value = parseInt(document.getElementById("size").value);
-    if (value > 3) {
+    if (value > minSize) {
         value -= 1;
         document.getElementById("size").value = value;
     }
 }
+
+function plusAngle() {
+    let value = parseInt(document.getElementById("angle").value);
+    if (value < maxAngle) {
+        value += 10;
+        document.getElementById("angle").value = value;
+    }
+}
+
+function minusAngle() {
+    let value = parseInt(document.getElementById("angle").value);
+    if (value > minAngle) {
+        value -= 10;
+        document.getElementById("angle").value = value;
+    }
+}
+
